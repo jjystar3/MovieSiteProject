@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.demo.movies.entity.Movies;
+import com.example.demo.movies.repository.MoviesRepository;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,7 +21,10 @@ import okhttp3.Response;
 public class OpenAPITest {
 	
 	String serviceKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjI4OWI2NDE1YWU3ZjIzYzg5NTRlYmIyMDQ3MmQ4MyIsIm5iZiI6MTcyOTIxODg2MS41MTgzOTQsInN1YiI6IjY3MTFjNmI5MDk3YzNkNzc2MGY4N2I2MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.O2mqNzbYvHys73U1x7oUofcG-GIrJl271KAF0_M5vSY";
-	
+
+	@Autowired
+	MoviesRepository moviesRepository;
+
 	public String getMovies() throws IOException {
 		
 		OkHttpClient client = new OkHttpClient();
@@ -104,6 +110,14 @@ public class OpenAPITest {
 		System.out.println("개봉일: " + root.results.get(0).release_date);
 		System.out.println("감독: " + directors);
 		System.out.println("주연배우: " + actors);
+		
+		
+		Movies movies2 = Movies.builder()
+								.movieId(123)
+								.title("영화1")
+								.build();
+		moviesRepository.save(movies2);
+		
 	}
 	
 }
