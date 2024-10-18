@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.member.entity.Member;
 
-
 @SpringBootTest
 public class MemberRepositoryTest {
 
