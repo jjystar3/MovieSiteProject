@@ -22,5 +22,5 @@ class ResultVideos{
 @ToString
 class RootVideos{
     public int id;
-    public ArrayList<Result> results;
+    public ArrayList<ResultVideos> results;
 }
