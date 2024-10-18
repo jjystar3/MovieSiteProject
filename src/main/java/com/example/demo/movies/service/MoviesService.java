@@ -7,11 +7,9 @@ import com.example.demo.movies.entity.Movies;
 
 public interface MoviesService {
 
-//	void register(MoviesDTO dto);
-	
 	Page<MoviesDTO> getList(int pageNumber);
 	
-	MoviesDTO read(int no);
+	MoviesDTO read(int id);
 		
 	// DTO -> Entity
 	default Movies dtoToEntity(MoviesDTO dto) {
@@ -31,7 +29,7 @@ public interface MoviesService {
 	}
 
 	// Entity -> DTO
-	default MoviesDTO entityToDto(Movies entity) {
+	default MoviesDTO entityToDTO(Movies entity) {
 
 		MoviesDTO dto = MoviesDTO.builder()
 				.movieId(entity.getMovieId())

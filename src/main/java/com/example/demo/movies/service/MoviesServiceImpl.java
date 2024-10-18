@@ -1,10 +1,16 @@
 package com.example.demo.movies.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.movies.dto.MoviesDTO;
+import com.example.demo.movies.entity.Movies;
 import com.example.demo.movies.repository.MoviesRepository;
 
 @Service
@@ -15,20 +21,30 @@ public class MoviesServiceImpl implements MoviesService {
 
 	@Override
 	public Page<MoviesDTO> getList(int pageNumber) {
-		// TODO Auto-generated method stub
-		return null;
+		int pageNum = (pageNumber == 0) ? 0 : pageNumber - 1;
+		
+		Sort sort = Sort.by("movieId").descending();
+		
+		Pageable pageable = PageRequest.of(pageNum, 10, sort);
+		Page<Movies> page = moviesRepository.findAll(pageable);
+		
+		Page<MoviesDTO> dtoPage = page.map(entity -> entityToDTO(entity));
+		
+		return dtoPage;
 	}
 
 	@Override
-	public MoviesDTO read(int no) {
-		// TODO Auto-generated method stub
+	public MoviesDTO read(int id) {
+
+		Optional<Movies> optional = moviesRepository.findById(id);
+		
+		if(optional.isPresent()) {
+			Movies movies = optional.get();
+			MoviesDTO dto = entityToDTO(movies);
+			return dto;
+		}
+		
 		return null;
 	}
 
-//	@Override
-//	public void register(MoviesDTO dto) {
-//		Movies entity = dtoToEntity(dto);
-//		moviesRepository.save(entity);
-//	}
-	
 }
