@@ -31,14 +31,14 @@ public class Member extends BaseEntity {
 	String password; // 패스워드
 
 	@Column(length = 100, nullable = false)
+	String name; // 이름
+
+	@Column(length = 100, nullable = false)
 	String nickname; // 닉네임
 
 	@Column(length = 200, nullable = false)
 	String email; // 이메일
 
-	@Column(length = 200, nullable = true)
-	String profileImage; // 프로필이미지
-	
 	@Column(length = 100, nullable = false)
 	String role; //사용자 등급 추가
 
