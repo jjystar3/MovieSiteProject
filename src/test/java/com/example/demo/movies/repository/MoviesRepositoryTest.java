@@ -18,13 +18,13 @@ public class MoviesRepositoryTest {
 	@Test
 	public void 영화등록() {
 		Movies movies = Movies.builder()
-								.movieId(123)
+								.movieId(123l)
 								.title("영화1")
 								.build();
 		moviesRepository.save(movies);
 		
 		Movies movies2 = Movies.builder()
-								.movieId(234)
+								.movieId(234l)
 								.title("영화2")
 								.build();
 		moviesRepository.save(movies2);
@@ -40,7 +40,7 @@ public class MoviesRepositoryTest {
 
 	@Test
 	public void 영화단건조회() {
-		Optional<Movies> result = moviesRepository.findById(123);
+		Optional<Movies> result = moviesRepository.findById(123l);
 		if(result.isPresent()) {
 			Movies movies = result.get();
 			System.out.println(movies);
@@ -49,7 +49,7 @@ public class MoviesRepositoryTest {
 
 	@Test
 	public void 영화수정() {
-		Optional<Movies> result = moviesRepository.findById(234);
+		Optional<Movies> result = moviesRepository.findById(234l);
 		if(result.isPresent()) {
 			Movies movies = result.get();
 			// 일부 내용 변경
@@ -61,7 +61,7 @@ public class MoviesRepositoryTest {
 	
 	@Test
 	public void 영화삭제() {
-		moviesRepository.deleteById(123);
+		moviesRepository.deleteById(123l);
 	}
 
 }

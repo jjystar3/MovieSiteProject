@@ -36,7 +36,7 @@ public class MoviesServiceImpl implements MoviesService {
 	@Override
 	public MoviesDTO read(int id) {
 
-		Optional<Movies> optional = moviesRepository.findById(id);
+		Optional<Movies> optional = moviesRepository.findById(Long.valueOf(id));
 		
 		if(optional.isPresent()) {
 			Movies movies = optional.get();

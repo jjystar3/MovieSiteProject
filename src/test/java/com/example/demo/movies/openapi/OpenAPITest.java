@@ -1,6 +1,9 @@
 package com.example.demo.movies.openapi;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,7 +75,7 @@ public class OpenAPITest {
 	}
 	
 	@Test
-	public void jsonToDto() throws IOException {
+	public void jsonToDto() throws IOException, ParseException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		
@@ -80,43 +83,69 @@ public class OpenAPITest {
 		Root root = null;
 		root = mapper.readValue(movies, Root.class);
 		
-		String movieID = String.valueOf(root.results.get(0).id);
-		
-		String credits = getCredits(movieID);
-		RootCredit rootCredit = null;
-		rootCredit = mapper.readValue(credits, RootCredit.class);
+		for(int i=0;i<root.results.size();i++) {
 
-		String videos = getVideos(movieID);
-		RootVideos rootVideos = null;
-		rootVideos = mapper.readValue(videos, RootVideos.class);
-		
-		List<String> directors = rootCredit.crew.stream()
-													.filter(c -> c.job.equals("Director"))
-													.map(x -> x.name)
-													.collect(Collectors.toList());
+			String movieID = String.valueOf(root.results.get(i).id);
+			
+			String credits = getCredits(movieID);
+			RootCredit rootCredit = null;
+			rootCredit = mapper.readValue(credits, RootCredit.class);
 
-		List<String> actors = rootCredit.cast.stream()
-													.map(x -> x.name)
-													.collect(Collectors.toList());
-		
-		System.out.println("전체 결과: " + root.results);
+			String videos = getVideos(movieID);
+			RootVideos rootVideos = null;
+			rootVideos = mapper.readValue(videos, RootVideos.class);
+			
+			List<String> directors = rootCredit.crew.stream()
+														.filter(c -> c.job.equals("Director"))
+														.map(x -> x.name)
+														.collect(Collectors.toList());
 
-		System.out.println("아이디: " + movieID);
-		System.out.println("제목: " + root.results.get(0).title);
-		System.out.println("줄거리: " + root.results.get(0).overview);
-		System.out.println("포스터경로: " + root.results.get(0).poster_path);
-		System.out.println("배경경로: " + root.results.get(0).backdrop_path);
-		System.out.println("영상경로: " + rootVideos.results);
-		System.out.println("개봉일: " + root.results.get(0).release_date);
-		System.out.println("감독: " + directors);
-		System.out.println("주연배우: " + actors);
+			List<String> actors = rootCredit.cast.stream()
+														.map(x -> x.name)
+														.collect(Collectors.toList());
+			
+			String directorsString = String.join(", ", directors);
+			String actorsString = String.join(", ", actors);
+			
+			List<String> keys = rootVideos.results.stream()
+													    .map(result -> result.key)
+													    .collect(Collectors.toList());
+			
+			String youtubeLink = null;
+	
+			if(keys.size()>0) {
+				String youtubeKey = keys.get(0);
+				youtubeLink = "https://www.youtube.com/watch?v=" + youtubeKey;
+			}
+			
+//			System.out.println("아이디: " + movieID);
+//			System.out.println("제목: " + root.results.get(i).title);
+//			System.out.println("줄거리: " + root.results.get(i).overview);
+//			System.out.println("포스터경로: " + root.results.get(i).poster_path);
+//			System.out.println("배경경로: " + root.results.get(i).backdrop_path);
+//			System.out.println("영상경로: " + youtubeLink);
+//			System.out.println("개봉일: " + root.results.get(i).release_date);
+//			System.out.println("감독: " + directors);
+//			System.out.println("주연배우: " + actors);
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = formatter.parse(root.results.get(i).release_date);
+			
+			Movies moviesEntity = Movies.builder()
+									.movieId(Long.valueOf(root.results.get(i).id))
+									.title(root.results.get(i).title)
+									.overview(root.results.get(i).overview)
+									.posterPath(root.results.get(i).poster_path)
+									.backdropPath(root.results.get(i).backdrop_path)
+									.videoPath(youtubeLink)
+									.releaseDate(date)
+									.directors(directorsString)
+									.actors(actorsString)
+									.build();
+			moviesRepository.save(moviesEntity);
+		}
 		
 		
-		Movies movies2 = Movies.builder()
-								.movieId(123)
-								.title("영화1")
-								.build();
-		moviesRepository.save(movies2);
 		
 	}
 	

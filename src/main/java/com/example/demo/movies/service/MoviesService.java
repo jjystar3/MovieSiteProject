@@ -17,12 +17,12 @@ public interface MoviesService {
 		Movies entity = Movies.builder()
 				.movieId(dto.getMovieId())
 				.title(dto.getTitle())
-				.description(dto.getDescription())
+				.overview(dto.getOverview())
 				.posterPath(dto.getPosterPath())
 				.backdropPath(dto.getBackdropPath())
 				.releaseDate(dto.getReleaseDate())
-				.director(dto.getDirector())
-				.mainActor(dto.getMainActor())
+				.directors(dto.getDirectors())
+				.actors(dto.getActors())
 				.build();
 		
 		return entity;
@@ -34,12 +34,12 @@ public interface MoviesService {
 		MoviesDTO dto = MoviesDTO.builder()
 				.movieId(entity.getMovieId())
 				.title(entity.getTitle())
-				.description(entity.getDescription())
+				.overview(entity.getOverview())
 				.posterPath(entity.getPosterPath())
 				.backdropPath(entity.getBackdropPath())
 				.releaseDate(entity.getReleaseDate())
-				.director(entity.getDirector())
-				.mainActor(entity.getMainActor())
+				.directors(entity.getDirectors())
+				.actors(entity.getActors())
 				.build();
 
 		return dto;

@@ -1,10 +1,12 @@
 package com.example.demo.movies.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,13 +26,13 @@ import lombok.ToString;
 public class Movies {
 
 	@Id
-	int movieId; // 영화 아이디
-
-	@Column(length = 255, nullable = false)
-	String title; // 패스워드
+	Long movieId;
 
 	@Column(length = 255)
-	String description;
+	String title;
+
+	@Lob
+	String overview;
 
 	@Column(length = 255)
 	String posterPath;
@@ -38,11 +40,14 @@ public class Movies {
 	@Column(length = 255)
 	String backdropPath;
 
+	@Column(length = 255)
+	String videoPath;
+
 	Date releaseDate;
 
-	@Column(length = 255)
-	String director;
+	@Column(columnDefinition = "TEXT")
+	String directors;
 
-	@Column(length = 255)
-	String mainActor;
+	@Column(columnDefinition = "TEXT")
+	String actors;
 }
