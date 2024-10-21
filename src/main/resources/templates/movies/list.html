@@ -26,7 +26,12 @@
     <tbody>
     <tr th:each="dto : ${list}">
         <td>
-        	<a th:href="@{/movies/read(movieId=${dto.movieId}, page=${list.number + 1})}">[[${dto.title}]]</a>
+        	<a th:href="@{/movies/read(movieId=${dto.movieId}, page=${list.number + 1})}">
+        		<!-- [[${dto.title}]] -->
+				<div class="form-group">
+				  <img th:src="${dto.posterPath}" alt="" width="250">
+				</div>
+        	</a>
         </td>
         <td>[[${dto.directors}]]</td>
         <td>[[${#temporals.format(dto.releaseDate, 'yyyy-MM-dd')}]]</td>

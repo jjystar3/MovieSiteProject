@@ -27,6 +27,8 @@ public class OpenAPITest {
 	
 	private final OkHttpClient client = new OkHttpClient();
 	
+	String imgUrl = "https://image.tmdb.org/t/p/original";
+	
 	@Value("${tmdb.api.key}")
 	private String serviceKey;
 	String movieList = "popular"; //  now_playing  popular  top_rated  upcoming
@@ -137,8 +139,8 @@ public class OpenAPITest {
                         .movieId(Long.valueOf(movieResult.id))
                         .title(movieResult.title)
                         .overview(movieResult.overview)
-                        .posterPath(movieResult.poster_path)
-                        .backdropPath(movieResult.backdrop_path)
+                        .posterPath(imgUrl + movieResult.poster_path)
+                        .backdropPath(imgUrl + movieResult.backdrop_path)
                         .videoPath(youtubeLink)
                         .releaseDate(releaseDate)
                         .directors(directorsString)
