@@ -4,8 +4,13 @@ import com.example.demo.common.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,22 +29,38 @@ import lombok.ToString;
 public class Member extends BaseEntity {
 
 	@Id
-	@Column(length = 50)
-	String id; // 아이디
+	@Column(length = 50, nullable = false, unique = true)
+	String id;
 
-	@Column(length = 200, nullable = false)
-	String password; // 패스워드
 
-	@Column(length = 100, nullable = false)
-	String name; // 이름
+    @NotBlank
+    @Size(min = 8, max = 200) // Minimum 8 characters for security reasons
+    @Column(length = 200, nullable = false)
+    private String password;
 
-	@Column(length = 100, nullable = false)
-	String nickname; // 닉네임
+    @NotBlank
+    @Size(max = 100)
+    @Column(length = 100, nullable = false)
+    private String name;
 
-	@Column(length = 200, nullable = false)
-	String email; // 이메일
+    @NotBlank
+    @Size(max = 100)
+    @Column(length = 100, nullable = false)
+    private String nickname;
 
-	@Column(length = 100, nullable = false)
-	String role; //사용자 등급 추가
+    @NotBlank
+    @Email // Ensures a valid email format
+    @Size(max = 200)
+    @Column(length = 200, nullable = false, unique = true)
+    private String email;
+
+    @Enumerated(EnumType.STRING) // Store as a string in the database
+    @Column(length = 100, nullable = false)
+    private Role role;
+
+    // Enum for role types
+    public enum Role {
+        USER, ADMIN
+    }
 
 }
