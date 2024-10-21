@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::page1} )}">
+	<!-- 템플릿 조각 전달 -->
+	<th:block th:fragment="page1">
+		<!-- 템플릿 만들기 -->
+		<h1>Template Page1</h1>
+
+		<!--인증 객체 정보-->
+		<b>Authenticated DTO:</b>
+		<div sec:authentication="principal"></div>
+		
+		<!-- 사용자 아이디 -->
+		<b>Authenticated username:</b>
+		<div sec:authentication="name"></div>
+		
+		<!-- 사용자가 가지고 있는 권한 -->
+		<b>Authenticated user role:</b>
+		<div sec:authentication="principal.authorities"></div>
+	</th:block>
+</th:block>
