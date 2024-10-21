@@ -1,13 +1,14 @@
 package com.example.demo.movies.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,7 +43,8 @@ public class Movies {
 
 	@Column(length = 255)
 	String videoPath;
-
+	
+	@Temporal(TemporalType.DATE)
 	Date releaseDate;
 
 	@Column(columnDefinition = "TEXT")
