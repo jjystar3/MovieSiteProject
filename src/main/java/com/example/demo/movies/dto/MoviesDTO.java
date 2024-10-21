@@ -1,7 +1,6 @@
 package com.example.demo.movies.dto;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,13 +17,14 @@ import lombok.ToString;
 @Builder
 public class MoviesDTO {
 
+	int id;
     Long movieId;
     String title;
     String overview;
     String posterPath;
     String backdropPath;
     String videoPath;
-    Date releaseDate;
+    LocalDate releaseDate;
     String directors;
     String actors;
 

@@ -1,14 +1,14 @@
 package com.example.demo.movies.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,6 +27,9 @@ import lombok.ToString;
 public class Movies {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	int id;
+	
 	Long movieId;
 
 	@Column(length = 255)
@@ -44,8 +47,8 @@ public class Movies {
 	@Column(length = 255)
 	String videoPath;
 	
-	@Temporal(TemporalType.DATE)
-	Date releaseDate;
+//	@Temporal(TemporalType.DATE)
+	LocalDate releaseDate;
 
 	@Column(columnDefinition = "TEXT")
 	String directors;

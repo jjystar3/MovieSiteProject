@@ -9,12 +9,13 @@ public interface MoviesService {
 
 	Page<MoviesDTO> getList(int pageNumber);
 	
-	MoviesDTO read(int id);
+	MoviesDTO read(Long id);
 		
 	// DTO -> Entity
 	default Movies dtoToEntity(MoviesDTO dto) {
 
 		Movies entity = Movies.builder()
+				.id(dto.getId())
 				.movieId(dto.getMovieId())
 				.title(dto.getTitle())
 				.overview(dto.getOverview())
@@ -32,6 +33,7 @@ public interface MoviesService {
 	default MoviesDTO entityToDTO(Movies entity) {
 
 		MoviesDTO dto = MoviesDTO.builder()
+				.id(entity.getId())
 				.movieId(entity.getMovieId())
 				.title(entity.getTitle())
 				.overview(entity.getOverview())

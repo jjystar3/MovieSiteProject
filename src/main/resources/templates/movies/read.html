@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+<th:block th:fragment="content">
+
+<h1 class="mt-4">Board Read Page</h1>
+
+<div class="form-group">
+  <label >번호</label>
+  <input type="text" class="form-control" th:value="${dto.movieId}" readonly >
+</div>
+
+<div class="form-group">
+  <label >제목</label>
+  <input type="text" class="form-control" th:value="${dto.title}" readonly >
+</div>
+<div class="form-group">
+  <label >내용</label>
+  <textarea class="form-control" rows="5" readonly>[[${dto.overview}]]</textarea>
+</div>
+<div class="form-group">
+  <label >감독</label>
+  <input type="text" class="form-control" th:value="${dto.directors}" readonly>
+</div>
+<div class="form-group">
+  <label >배우</label>
+  <input type="text" class="form-control" th:value="${dto.actors}" readonly>
+</div>
+<div class="form-group">
+  <label >개봉일</label>
+  <input type="text" class="form-control" th:value="${#temporals.format(dto.releaseDate, 'yyyy-MM-dd')}" readonly>
+</div>
+
+
+<!-- @{} 링크표현식 -->
+<!-- /board/modify?no=1 -->
+<!-- <a th:href="@{/movies/modify (no = ${dto.no})}">
+  <button type="button" class="btn btn-primary">수정</button>
+</a> -->
+
+<!-- 페이지 번호 파라미터 추가 -->
+<!-- /board/list?page=1 -->
+<a th:href="@{/movies/list (page = ${page})}">
+  <button type="button" class="btn btn-info">목록으로</button>
+</a>
+
+</th:block>
+
+</th:block>
+

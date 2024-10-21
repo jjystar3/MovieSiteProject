@@ -2,8 +2,8 @@ package com.example.demo.movies.openapi;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -74,7 +74,7 @@ public class OpenAPITest {
 	public void jsonToDto() throws IOException, ParseException, InterruptedException, ExecutionException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	    
 		int page = 1;
         Root root;
@@ -126,16 +126,10 @@ public class OpenAPITest {
                         .map(result -> "https://www.youtube.com/watch?v=" + result.key)
                         .orElse(null);
 
-             // Check if release_date is not null or empty before parsing
-                Date releaseDate = null;
+                // Check if release_date is not null or empty before parsing
+                LocalDate releaseDate = null;
                 if (movieResult.release_date != null && !movieResult.release_date.trim().isEmpty()) {
-                    try {
-                        releaseDate = formatter.parse(movieResult.release_date);
-                    } catch (ParseException e) {
-                        // Handle the parsing error (e.g., log it or continue)
-                        System.err.println("Failed to parse release date for movie: " + movieResult.title);
-                        e.printStackTrace();
-                    }
+                    releaseDate = LocalDate.parse(movieResult.release_date, formatter);
                 }
 
                 // Build and save the movie entity

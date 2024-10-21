@@ -40,7 +40,7 @@ public class MoviesRepositoryTest {
 
 	@Test
 	public void 영화단건조회() {
-		Optional<Movies> result = moviesRepository.findById(123l);
+		Optional<Movies> result = moviesRepository.findById(123);
 		if(result.isPresent()) {
 			Movies movies = result.get();
 			System.out.println(movies);
@@ -49,7 +49,7 @@ public class MoviesRepositoryTest {
 
 	@Test
 	public void 영화수정() {
-		Optional<Movies> result = moviesRepository.findById(234l);
+		Optional<Movies> result = moviesRepository.findById(234);
 		if(result.isPresent()) {
 			Movies movies = result.get();
 			// 일부 내용 변경
@@ -61,7 +61,7 @@ public class MoviesRepositoryTest {
 	
 	@Test
 	public void 영화삭제() {
-		moviesRepository.deleteById(123l);
+		moviesRepository.deleteById(123);
 	}
 
 }

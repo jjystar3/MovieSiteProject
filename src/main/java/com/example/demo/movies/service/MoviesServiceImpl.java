@@ -23,9 +23,9 @@ public class MoviesServiceImpl implements MoviesService {
 	public Page<MoviesDTO> getList(int pageNumber) {
 		int pageNum = (pageNumber == 0) ? 0 : pageNumber - 1;
 		
-		Sort sort = Sort.by("movieId").descending();
+		Sort sort = Sort.by("id").ascending(); //descending()
 		
-		Pageable pageable = PageRequest.of(pageNum, 10, sort);
+		Pageable pageable = PageRequest.of(pageNum, 20, sort);
 		Page<Movies> page = moviesRepository.findAll(pageable);
 		
 		Page<MoviesDTO> dtoPage = page.map(entity -> entityToDTO(entity));
@@ -34,9 +34,9 @@ public class MoviesServiceImpl implements MoviesService {
 	}
 
 	@Override
-	public MoviesDTO read(int id) {
+	public MoviesDTO read(Long movieId) {
 
-		Optional<Movies> optional = moviesRepository.findById(Long.valueOf(id));
+		Optional<Movies> optional = moviesRepository.findByMovieId(movieId);
 		
 		if(optional.isPresent()) {
 			Movies movies = optional.get();

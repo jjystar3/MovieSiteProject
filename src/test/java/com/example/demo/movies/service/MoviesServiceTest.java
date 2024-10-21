@@ -33,7 +33,7 @@ public class MoviesServiceTest {
 	
 	@Test
 	public void 게시물단건조회() {
-		MoviesDTO dto = moviesService.read(123);
+		MoviesDTO dto = moviesService.read(123l);
 		System.out.println(dto);
 	}
 	
