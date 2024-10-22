@@ -18,10 +18,10 @@ public class MemberRepositoryTest {
 	@Test
 	public void 회원등록() {
 		
-		Member member = new Member("user1","1234","홍길동", "둘리", "user1@naver.com", Member.Role.USER);
+		Member member = new Member("user1","1234","홍길동", "둘리", "user1@naver.com", Member.Role.ROLE_USER);
 		memberRepository.save(member);
 		
-		Member member2 = new Member("user2","1234","김철수", "또치", "user2@gmail.com", Member.Role.ADMIN);
+		Member member2 = new Member("user2","1234","김철수", "또치", "user2@gmail.com", Member.Role.ROLE_ADMIN);
 		memberRepository.save(member2);
 	}
 	

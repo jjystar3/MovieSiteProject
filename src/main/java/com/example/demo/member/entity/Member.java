@@ -32,7 +32,6 @@ public class Member extends BaseEntity {
 	@Column(length = 50, nullable = false, unique = true)
 	String id;
 
-
     @NotBlank
     @Size(min = 8, max = 200) // Minimum 8 characters for security reasons
     @Column(length = 200, nullable = false)
@@ -60,7 +59,7 @@ public class Member extends BaseEntity {
 
     // Enum for role types
     public enum Role {
-        USER, ADMIN
+        ROLE_USER, ROLE_ADMIN
     }
 
 }
