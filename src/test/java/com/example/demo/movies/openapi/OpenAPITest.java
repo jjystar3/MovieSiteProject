@@ -27,8 +27,6 @@ public class OpenAPITest {
 	
 	private final OkHttpClient client = new OkHttpClient();
 	
-	String imgUrl = "https://image.tmdb.org/t/p/original";
-	
 	@Value("${tmdb.api.key}")
 	private String serviceKey;
 	String movieList = "popular"; //  now_playing  popular  top_rated  upcoming
@@ -123,12 +121,15 @@ public class OpenAPITest {
                 String actorsString = rootCredit.cast.stream()
                         .map(x -> x.name)
                         .collect(Collectors.joining(", "));
-
+                
+                String posterPath = (movieResult.poster_path != null) ? movieResult.poster_path : "/zr9Yel6jjlNe1O3xBnrndZDL3nC.jpg";
+                String backdropPath = (movieResult.backdrop_path != null) ? movieResult.backdrop_path : "/o9uMF84ZAGBqRxbliFCTgw0vQYv.jpg";
+                
                 // Get the first YouTube video link (if available)
                 String youtubeLink = rootVideos.results.stream()
                         .findFirst()
-                        .map(result -> "https://www.youtube.com/embed/" + result.key)
-                        .orElse(null);
+                        .map(result -> result.key)
+                        .orElse("n5HbQ7vCvDY");
 
                 // Check if release_date is not null or empty before parsing
                 LocalDate releaseDate = null;
@@ -142,8 +143,8 @@ public class OpenAPITest {
                         .adult(movieResult.adult)
                         .title(movieResult.title)
                         .overview(movieResult.overview)
-                        .posterPath(imgUrl + movieResult.poster_path)
-                        .backdropPath(imgUrl + movieResult.backdrop_path)
+                        .posterPath(posterPath)
+                        .backdropPath(backdropPath)
                         .videoPath(youtubeLink)
                         .releaseDate(releaseDate)
                         .directors(directorsString)
