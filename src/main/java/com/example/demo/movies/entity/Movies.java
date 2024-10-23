@@ -31,6 +31,8 @@ public class Movies {
 	int id;
 	
 	Long movieId;
+	
+	Boolean adult;
 
 	@Column(length = 255)
 	String title;

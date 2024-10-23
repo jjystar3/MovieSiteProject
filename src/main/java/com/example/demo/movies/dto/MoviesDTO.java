@@ -19,6 +19,7 @@ public class MoviesDTO {
 
 	int id;
     Long movieId;
+    Boolean adult;
     String title;
     String overview;
     String posterPath;

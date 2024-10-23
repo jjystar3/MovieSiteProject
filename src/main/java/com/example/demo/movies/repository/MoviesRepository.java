@@ -14,4 +14,6 @@ public interface MoviesRepository extends JpaRepository<Movies, Integer>   {
 	// 게시물을 기준으로 댓글 리스트 조회 (쿼리메소드)
 	Optional<Movies> findByMovieId(Long movieId);
 	
+	void deleteByMovieId(Long movieId);
+	
 }

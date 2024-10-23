@@ -2,8 +2,6 @@ package com.example.demo.movies.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-
 import com.example.demo.movies.dto.MoviesDTO;
 import com.example.demo.movies.entity.Movies;
 
@@ -11,14 +9,21 @@ public interface MoviesService {
 
 	List<MoviesDTO> getList();
 	
-	MoviesDTO read(Long id);
-		
+	MoviesDTO read(Long movieId);
+
+	// 게시물 수정 메소드
+	void modify(MoviesDTO dto);
+	
+	// 게시물 삭제 메소드
+	void remove(Long movieId);
+	
 	// DTO -> Entity
 	default Movies dtoToEntity(MoviesDTO dto) {
 
 		Movies entity = Movies.builder()
 				.id(dto.getId())
 				.movieId(dto.getMovieId())
+				.adult(dto.getAdult())
 				.title(dto.getTitle())
 				.overview(dto.getOverview())
 				.posterPath(dto.getPosterPath())
@@ -38,6 +43,7 @@ public interface MoviesService {
 		MoviesDTO dto = MoviesDTO.builder()
 				.id(entity.getId())
 				.movieId(entity.getMovieId())
+				.adult(entity.getAdult())
 				.title(entity.getTitle())
 				.overview(entity.getOverview())
 				.posterPath(entity.getPosterPath())

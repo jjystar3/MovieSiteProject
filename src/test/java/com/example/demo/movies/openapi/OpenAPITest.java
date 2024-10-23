@@ -33,7 +33,7 @@ public class OpenAPITest {
 	private String serviceKey;
 	String movieList = "popular"; //  now_playing  popular  top_rated  upcoming
 	String language = "ko-KR"; //  en-US  ko-KR
-	String adult = "include_adult=false";
+	String adult = "include_adult=true";
 	
 	@Autowired
 	MoviesRepository moviesRepository;
@@ -139,6 +139,7 @@ public class OpenAPITest {
                 // Build and save the movie entity
                 Movies moviesEntity = Movies.builder()
                         .movieId(Long.valueOf(movieResult.id))
+                        .adult(movieResult.adult)
                         .title(movieResult.title)
                         .overview(movieResult.overview)
                         .posterPath(imgUrl + movieResult.poster_path)
