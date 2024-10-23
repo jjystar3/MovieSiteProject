@@ -11,7 +11,9 @@ public interface MemberService {
 	
 	boolean register(MemberDTO dto); //회원 등록
 
-	MemberDTO read(String id); //회원 단건 조회
+	MemberDTO findById(Long id); //회원 단건 조회
+	
+	MemberDTO findByEmail(String email);
 	
 	//엔티티를 DTO로 변환하는 메소드
 	default MemberDTO entityToDto(Member entity) {
@@ -19,8 +21,6 @@ public interface MemberService {
 		MemberDTO dto = MemberDTO.builder()
 				.id(entity.getId())
 				.password(entity.getPassword())
-				.name(entity.getName())
-				.nickname(entity.getNickname())
 				.email(entity.getEmail())
 				.regDate(entity.getRegDate())
 				.modDate(entity.getModDate())
@@ -36,8 +36,6 @@ public interface MemberService {
 		Member entity = Member.builder()
 				.id(dto.getId())
 				.password(dto.getPassword())
-				.name(dto.getName())
-				.nickname(dto.getNickname())
 				.email(dto.getEmail())
 				.role(dto.getRole())
 				.build();

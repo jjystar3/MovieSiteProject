@@ -41,7 +41,7 @@ public class MemberController {
 		if(isSuccess) {
 			return "redirect:/customlogin";
 		}else {
-			redirectAttributes.addFlashAttribute("msg", "아이디가 중복되어 등록에 실패하였습니다");
+			redirectAttributes.addFlashAttribute("msg", "이메일이 중복되어 등록에 실패하였습니다");
 			return "redirect:/register";
 		}
 
@@ -52,9 +52,9 @@ public class MemberController {
 	@GetMapping("/member/read") // 주소수정
 	// /member/read?id=user1&page=1
 	// /member/read?id=user1
-	public void read(@RequestParam(name = "id") String id, @RequestParam(name = "page", defaultValue = "0") int page, Model model) { //파라미터 추가
+	public void read(@RequestParam(name = "id") Long id, @RequestParam(name = "page", defaultValue = "0") int page, Model model) { //파라미터 추가
 		// 전달받은 파라미터로 회원 조회
-		MemberDTO dto = service.read(id);
+		MemberDTO dto = service.findById(id);
 		// 조회한 회원정보를 화면에 전달
 		model.addAttribute("dto", dto); //사용자 정보
 		// 페이지번호를 화면에 전달

@@ -11,7 +11,7 @@ import com.example.demo.member.dto.MemberDTO;
 public class CustomUser extends User {
 
   public CustomUser(MemberDTO dto) {
-	super(dto.getId(), dto.getPassword(), Arrays.asList(new SimpleGrantedAuthority(dto.getRole().name())));
+	super(dto.getEmail(), dto.getPassword(), Arrays.asList(new SimpleGrantedAuthority(dto.getRole().name())));
   }
   
 }

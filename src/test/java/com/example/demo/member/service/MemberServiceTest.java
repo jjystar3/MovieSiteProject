@@ -16,10 +16,8 @@ public class MemberServiceTest {
 	@Test
 	public void 회원등록() {
 		MemberDTO dto = MemberDTO.builder()
-				.id("user3")
+				.id(3l)
 				.password("1234")
-				.name("홍길동")
-				.nickname("둘리")
 				.email("user3@naver.com")
 				.role(Role.ROLE_USER)
 				.build();

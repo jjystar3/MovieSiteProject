@@ -19,14 +19,10 @@ import lombok.ToString;
 @Builder
 public class MemberDTO {
 
-    String id;
+    Long id;
 
     String password;
 
-    String name;
-    
-    String nickname;
-    
     String email;
     
     LocalDateTime regDate;

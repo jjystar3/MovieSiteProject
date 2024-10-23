@@ -36,18 +36,14 @@ public class MemberServiceImpl implements MemberService { //서비스 인터페�
 	
 	@Override
 	public boolean register(MemberDTO dto) {
-		// 아이디 중복 여부를 확인하고, 회원 등록을 진행
-		String id = dto.getId();
-		MemberDTO getDto = read(id);
-		// 해당아이디가 사용되고 있다면, 처리결과는 실패(false) 반환
+		String email = dto.getEmail();
+		MemberDTO getDto = findByEmail(email);
 		if (getDto != null) {
-			System.out.println("사용중인 아이디입니다.");
+			System.out.println("사용중인 이메일입니다.");
 			return false;
 		}
-		// 해당아이디가 사용되지 않는다면, 회원을 등록하고 처리결과는 성공(true) 반환
 		Member entity = dtoToEntity(dto);
 		
-		// 패스워드 인코더로 패스워드 암호화하기
 		String enPw = passwordEncoder.encode(entity.getPassword());
 		entity.setPassword(enPw);
 		
@@ -56,8 +52,19 @@ public class MemberServiceImpl implements MemberService { //서비스 인터페�
 	}
 
 	@Override
-	public MemberDTO read(String id) {
+	public MemberDTO findById(Long id) {
 		Optional<Member> result = repository.findById(id);
+		if (result.isPresent()) {
+			Member member = result.get();
+			return entityToDto(member);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public MemberDTO findByEmail(String email) {
+		Optional<Member> result = repository.findByEmail(email);
 		if (result.isPresent()) {
 			Member member = result.get();
 			return entityToDto(member);

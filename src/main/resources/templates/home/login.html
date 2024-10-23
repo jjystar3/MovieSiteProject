@@ -42,14 +42,14 @@
 	    	    <form action="/login" method="post"> <!-- 로그인처리 url, 시큐리티 내부적으로 처리 -->
 	    	    	<!-- 현재 url에 error라는 파라미터가 붙었는지에 따라서 로그인을 실패했는지 알 수 있음 -->
 		            <div class="alert alert-danger" th:if="${param.error != null}">
-		                사용자ID 또는 비밀번호를 확인해 주세요..
+		                이메일 또는 비밀번호를 확인해 주세요
 		            </div>
 		            <div class="form-group">
-		                <label >아이디</label>
+		                <label >이메일</label>
 		                <input type="text" class="form-control" name="username"> <!-- name속성은 반드시 username을 사용. 시큐리티에서 username을 아이디로 처리 -->
 		            </div>
 		            <div class="form-group">
-		                <label >패스워드</label>
+		                <label >비밀번호</label>
 		                <input type="password" class="form-control" name="password">
 		            </div>		            
 		            <button type="submit" class="btn btn-primary">Login</button>

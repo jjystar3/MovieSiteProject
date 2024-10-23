@@ -6,6 +6,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -29,23 +31,13 @@ import lombok.ToString;
 public class Member extends BaseEntity {
 
 	@Id
-	@Column(length = 50, nullable = false, unique = true)
-	String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotBlank
-    @Size(min = 8, max = 200) // Minimum 8 characters for security reasons
-    @Column(length = 200, nullable = false)
+    @Size(min = 8, max = 100) // Minimum 8 characters for security reasons
+    @Column(length = 100, nullable = false)
     private String password;
-
-    @NotBlank
-    @Size(max = 100)
-    @Column(length = 100, nullable = false)
-    private String name;
-
-    @NotBlank
-    @Size(max = 100)
-    @Column(length = 100, nullable = false)
-    private String nickname;
 
     @NotBlank
     @Email // Ensures a valid email format
