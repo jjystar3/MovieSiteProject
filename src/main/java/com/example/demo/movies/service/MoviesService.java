@@ -1,5 +1,7 @@
 package com.example.demo.movies.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.example.demo.movies.dto.MoviesDTO;
@@ -7,7 +9,7 @@ import com.example.demo.movies.entity.Movies;
 
 public interface MoviesService {
 
-	Page<MoviesDTO> getList(int pageNumber);
+	List<MoviesDTO> getList();
 	
 	MoviesDTO read(Long id);
 		

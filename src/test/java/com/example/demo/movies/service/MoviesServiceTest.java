@@ -21,12 +21,9 @@ public class MoviesServiceTest {
 	}
 
 	@Test
-	public void 첫번째페이지_게시물목록조회() {
-		//첫번째 페이지 조회
-		Page<MoviesDTO> page = moviesService.getList(1); 
-		//게시물 목록만 출력
-		List<MoviesDTO> list = page.getContent(); 
-		for(MoviesDTO dto : list) {
+	public void 게시물목록조회() {
+		List<MoviesDTO> result = moviesService.getList(); 
+		for(MoviesDTO dto : result) {
 			System.out.println(dto);
 		}
 	}

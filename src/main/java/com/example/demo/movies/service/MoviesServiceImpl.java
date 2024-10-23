@@ -1,6 +1,9 @@
 package com.example.demo.movies.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,17 +23,19 @@ public class MoviesServiceImpl implements MoviesService {
 	MoviesRepository moviesRepository;
 
 	@Override
-	public Page<MoviesDTO> getList(int pageNumber) {
-		int pageNum = (pageNumber == 0) ? 0 : pageNumber - 1;
+	public List<MoviesDTO> getList() {
 		
 		Sort sort = Sort.by("id").ascending(); //descending()
 		
-		Pageable pageable = PageRequest.of(pageNum, 20, sort);
-		Page<Movies> page = moviesRepository.findAll(pageable);
+		List<Movies> result = moviesRepository.findAll(sort);
 		
-		Page<MoviesDTO> dtoPage = page.map(entity -> entityToDTO(entity));
+		List<MoviesDTO> list = new ArrayList<>();
 		
-		return dtoPage;
+		list = result.stream()
+				.map(entity -> entityToDTO(entity))
+				.collect(Collectors.toList());
+		
+		return list;
 	}
 
 	@Override
