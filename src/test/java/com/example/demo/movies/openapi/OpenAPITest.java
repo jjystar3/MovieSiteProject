@@ -33,6 +33,7 @@ public class OpenAPITest {
 	private String serviceKey;
 	String movieList = "popular"; //  now_playing  popular  top_rated  upcoming
 	String language = "ko-KR"; //  en-US  ko-KR
+	String adult = "include_adult=false";
 	
 	@Autowired
 	MoviesRepository moviesRepository;
@@ -55,7 +56,7 @@ public class OpenAPITest {
 
     // Fetch movies with pagination
     public Root getMovies(int page) throws IOException {
-        String url = "https://api.themoviedb.org/3/movie/" + movieList + "?language=" + language + "&page=" + page;
+        String url = "https://api.themoviedb.org/3/discover/movie?" + adult + "&language=" + language + "&page=" + page + "&sort_by=popularity.desc";
         String responseJson = makeApiRequest(url);
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -63,12 +64,12 @@ public class OpenAPITest {
     }
 
     public String getCredits(String movieId) throws IOException {
-        String url = "https://api.themoviedb.org/3/movie/" + movieId + "/credits?language=" + language;
+        String url = "https://api.themoviedb.org/3/movie/" + movieId + "/credits?language=" + language + adult;
         return makeApiRequest(url);
     }
 
     public String getVideos(String movieId) throws IOException {
-        String url = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?language=" + language;
+        String url = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?language=" + language + adult;
         return makeApiRequest(url);
     }
 	
@@ -87,6 +88,7 @@ public class OpenAPITest {
 
             // Process each movie in the results
             for (Result movieResult : root.results) {
+
                 String movieID = String.valueOf(movieResult.id);
 
                 // Fetch credits and videos concurrently
