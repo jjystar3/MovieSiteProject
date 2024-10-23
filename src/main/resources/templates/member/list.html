@@ -9,8 +9,8 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>아이디</th>
-					<th>이름</th>
+					<th>ID</th>
+					<th>이메일</th>
 					<th>등록일</th>
 				</tr>
 			</thead>
@@ -29,7 +29,7 @@
 							[[${dto.id}]]
 						</a>
 					</th>
-					<td>[[${dto.name}]]</td>
+					<td>[[${dto.email}]]</td>
 					<td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
 				</tr>
 
