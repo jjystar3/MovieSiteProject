@@ -125,7 +125,7 @@ public class OpenAPITest {
                 // Get the first YouTube video link (if available)
                 String youtubeLink = rootVideos.results.stream()
                         .findFirst()
-                        .map(result -> "https://www.youtube.com/watch?v=" + result.key)
+                        .map(result -> "https://www.youtube.com/embed/" + result.key)
                         .orElse(null);
 
                 // Check if release_date is not null or empty before parsing

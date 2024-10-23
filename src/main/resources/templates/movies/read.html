@@ -35,6 +35,10 @@
   <label >개봉일</label>
   <input type="text" class="form-control" th:value="${#temporals.format(dto.releaseDate, 'yyyy-MM-dd')}" readonly>
 </div>
+<div class="form-group">
+  <iframe width="420" height="315" th:src="${dto.videoPath}">
+  </iframe>
+</div>
 
 
 <!-- @{} 링크표현식 -->
