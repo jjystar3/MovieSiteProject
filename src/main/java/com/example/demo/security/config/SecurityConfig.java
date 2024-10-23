@@ -1,7 +1,5 @@
 package com.example.demo.security.config;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,11 +18,11 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(
             auth -> auth
-            	.requestMatchers("/register").permitAll()
-                .requestMatchers("/assets/**", "/css/**", "/js/**").permitAll()
-                .requestMatchers("/").authenticated()
-                .requestMatchers("/movies/*").hasAnyRole("ADMIN", "USER")
-                .requestMatchers("/member/*").hasRole("ADMIN")
+	            .requestMatchers("/register").permitAll()  // Permit registration to anyone
+	            .requestMatchers("/assets/**", "/css/**", "/js/**").permitAll()  // Permit static resources
+	            .requestMatchers("/movies/**").hasAnyRole("ADMIN", "USER")  // Protect movies for certain roles
+	            .requestMatchers("/member/**").hasRole("ADMIN")  // Protect admin routes
+	            .anyRequest().permitAll()  // Allow all other routes (like "/") to be accessed by anyone
         )
         .csrf(csrf -> csrf.disable())
         .formLogin(
@@ -36,7 +34,12 @@ public class SecurityConfig {
 //	                response.sendRedirect("/");
 //	            })
         )
-        .logout(withDefaults());
+        .logout(logout -> logout
+        	    .logoutUrl("/logout")
+        	    .logoutSuccessUrl("/")//custom-logout-page
+        	    .permitAll()
+        	);
+//        .logout(withDefaults());
               
         return http.build();
     }

@@ -39,7 +39,7 @@ public class MemberController {
 		boolean isSuccess = service.register(dto);
 
 		if(isSuccess) {
-			return "redirect:/";
+			return "redirect:/login";
 		}else {
 			redirectAttributes.addFlashAttribute("msg", "아이디가 중복되어 등록에 실패하였습니다");
 			return "redirect:/register";
