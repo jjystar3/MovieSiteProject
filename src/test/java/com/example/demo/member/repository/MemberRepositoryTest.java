@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.member.entity.Member;
+import com.example.demo.member.entity.Member.Role;
 
 @SpringBootTest
 public class MemberRepositoryTest {
@@ -18,10 +19,10 @@ public class MemberRepositoryTest {
 	@Test
 	public void 회원등록() {
 		
-		Member member = new Member("user1","1234","홍길동", "둘리", "user1@naver.com", Member.Role.ROLE_USER);
+		Member member = new Member("user1","1234","홍길동", "둘리", "user1@naver.com", Role.ROLE_USER);
 		memberRepository.save(member);
 		
-		Member member2 = new Member("user2","1234","김철수", "또치", "user2@gmail.com", Member.Role.ROLE_ADMIN);
+		Member member2 = new Member("user2","1234","김철수", "또치", "user2@gmail.com", Role.ROLE_ADMIN);
 		memberRepository.save(member2);
 	}
 	
