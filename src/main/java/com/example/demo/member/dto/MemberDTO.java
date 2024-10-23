@@ -29,6 +29,7 @@ public class MemberDTO {
 
     LocalDateTime modDate;
 
-    Role role;
+    @Builder.Default
+    final Role role = Role.ROLE_USER;
 
 }

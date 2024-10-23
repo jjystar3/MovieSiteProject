@@ -47,7 +47,8 @@ public class Member extends BaseEntity {
 
     @Enumerated(EnumType.STRING) // Store as a string in the database
     @Column(length = 100, nullable = false)
-    private Role role;
+    @Builder.Default
+    private final Role role = Role.ROLE_USER;
 
     // Enum for role types
     public enum Role {
