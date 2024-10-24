@@ -20,6 +20,8 @@ import lombok.ToString;
 public class MemberDTO {
 
     Long id;
+    
+    String username;
 
     String password;
 

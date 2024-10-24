@@ -20,10 +20,12 @@ public class SecurityConfig {
             auth -> auth
 	            .requestMatchers("/register").permitAll()  // Permit registration to anyone
 	            .requestMatchers("/assets/**", "/css/**", "/js/**").permitAll()  // Permit static resources
-	            .requestMatchers("/movies/modify/**").hasRole("ADMIN")
-	            .requestMatchers("/movies/**").hasAnyRole("ADMIN", "USER")  // Protect movies for certain roles
-	            .requestMatchers("/member/**").hasRole("ADMIN")  // Protect admin routes
-	            .anyRequest().permitAll()  // Allow all other routes (like "/") to be accessed by anyone
+	            .requestMatchers("/movies/modify/**").hasRole("ADMIN")  // Admin-only for movie modification
+	            .requestMatchers("/movies/**").hasAnyRole("ADMIN", "USER")  // Movies accessible by ADMIN and USER
+	            .requestMatchers("/member/profile/**").hasAnyRole("ADMIN", "USER")  // Profile accessible by ADMIN and USER
+	            .requestMatchers("/member/modify/**").hasAnyRole("ADMIN", "USER")  // Profile accessible by ADMIN and USER
+	            .requestMatchers("/member/**").hasRole("ADMIN")  // Admin-only for other member routes
+	            .anyRequest().permitAll()  // Allow all other routes
         )
         .csrf(csrf -> csrf.disable())
         .formLogin(

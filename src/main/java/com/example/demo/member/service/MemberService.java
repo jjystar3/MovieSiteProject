@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
+import com.example.demo.movies.dto.MoviesDTO;
 
 public interface MemberService {
 	
@@ -14,12 +15,15 @@ public interface MemberService {
 	MemberDTO findById(Long id); //회원 단건 조회
 	
 	MemberDTO findByEmail(String email);
+
+	void modify(MemberDTO dto);
 	
 	//엔티티를 DTO로 변환하는 메소드
 	default MemberDTO entityToDto(Member entity) {
 		
 		MemberDTO dto = MemberDTO.builder()
 				.id(entity.getId())
+				.username(entity.getUsername())
 				.password(entity.getPassword())
 				.email(entity.getEmail())
 				.regDate(entity.getRegDate())
@@ -35,6 +39,7 @@ public interface MemberService {
 
 		Member entity = Member.builder()
 				.id(dto.getId())
+				.username(dto.getUsername())
 				.password(dto.getPassword())
 				.email(dto.getEmail())
 				.role(dto.getRole())

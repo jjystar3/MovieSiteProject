@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
 import com.example.demo.member.repository.MemberRepository;
+import com.example.demo.movies.dto.MoviesDTO;
+import com.example.demo.movies.entity.Movies;
 
 @Service
 public class MemberServiceImpl implements MemberService { //서비스 인터페이스 상속받기
@@ -71,6 +73,24 @@ public class MemberServiceImpl implements MemberService { //서비스 인터페�
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public void modify(MemberDTO dto) {
+
+		Long id = dto.getId();
+		Optional<Member> optional = repository.findById(id);
+		
+		if(optional.isPresent()) {
+
+			Member member = optional.get();
+			
+			member.setUsername(dto.getUsername());
+			member.setEmail(dto.getEmail());
+			
+			repository.save(member);
+		}
+		
 	}
 
 }

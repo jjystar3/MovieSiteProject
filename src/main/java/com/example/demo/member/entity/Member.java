@@ -33,7 +33,10 @@ public class Member extends BaseEntity {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+	
+    @Column(length = 50, unique = true)
+    private String username;  // Nullable username
+	
     @NotBlank
     @Size(min = 8, max = 100) // Minimum 8 characters for security reasons
     @Column(length = 100, nullable = false)

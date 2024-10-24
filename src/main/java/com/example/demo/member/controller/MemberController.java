@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.service.MemberService;
+import com.example.demo.movies.dto.MoviesDTO;
 
 @Controller
 //@RequestMapping("/member") //중간경로 제거
@@ -47,17 +48,41 @@ public class MemberController {
 
 	}
 
-	// 상세화면을 반환하는 메소드
-	//	@GetMapping("/read")
-	@GetMapping("/member/read") // 주소수정
-	// /member/read?id=user1&page=1
-	// /member/read?id=user1
-	public void read(@RequestParam(name = "id") Long id, @RequestParam(name = "page", defaultValue = "0") int page, Model model) { //파라미터 추가
-		// 전달받은 파라미터로 회원 조회
+	@GetMapping("/member/read")
+	public void read(@RequestParam(name = "id") Long id, @RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+		
 		MemberDTO dto = service.findById(id);
-		// 조회한 회원정보를 화면에 전달
-		model.addAttribute("dto", dto); //사용자 정보
-		// 페이지번호를 화면에 전달
-		model.addAttribute("page", page); //페이지번호 (화면을 이동해도 페이지번호를 유지하기 위해서)
+		
+		model.addAttribute("dto", dto);
+		model.addAttribute("page", page);
+		
 	}
+
+	@GetMapping("/member/profile")
+	public void profile(@RequestParam(name = "id") Long id, Model model) {
+		
+		MemberDTO dto = service.findById(id);
+		
+		model.addAttribute("dto", dto);
+		
+	}
+
+	@GetMapping("/member/modify")
+	public void modify(@RequestParam(name = "id") Long id, Model model) {
+		
+		MemberDTO dto = service.findById(id);
+		
+		model.addAttribute("dto", dto);		
+	}
+	
+    @PostMapping("/member/modify")
+    public String modifyPost(MemberDTO dto, RedirectAttributes redirectAttributes) {
+        
+    	service.modify(dto);
+        
+        redirectAttributes.addAttribute("id", dto.getId());
+
+        return "redirect:/member/profile";
+    }
+    
 }

@@ -4,8 +4,16 @@
 
     <th:block th:fragment="content">
 
-        <h1 class="mt-4">Member Read Page</h1>
+        <h1 class="mt-4">마이 페이지</h1>
 
+        <div class="form-group">
+            <label >번호</label>
+            <input type="text" class="form-control" name="id" th:value="${dto.id}" readonly>
+        </div>
+        <div class="form-group">
+            <label >UserName</label>
+            <input type="text" class="form-control" name="username" th:value="${dto.username}" readonly>
+        </div>
         <div class="form-group">
             <label >이메일</label>
             <input type="text" class="form-control" name="email" th:value="${dto.email}" readonly >
@@ -16,7 +24,7 @@
         </div>
         
         <!-- 등급 필드 -->
-        <div class="form-group">
+        <div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
             <label >등급</label>
             <!-- value 속성 수정 -->
             <input type="text" class="form-control" name="role" th:value="${dto.role}" readonly>
@@ -30,10 +38,11 @@
             <input type="text" class="form-control" name="modDate" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
         </div>
 
-        <a th:href="@{/member/list(page=${page})}">
-        	<button type="button" class="btn btn-info">목록으로</button>
-        </a>
-
+		
+		<a th:href="@{/member/modify (id = ${dto.id})}">
+		  <button type="button" class="btn btn-primary">수정</button>
+		</a>
+		
     </th:block>
 
 </th:block>
