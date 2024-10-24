@@ -13,7 +13,8 @@ public class HomeController {
 
 	@GetMapping("/customlogin")
 	public String login() {
-		
+
 		return "/home/login";
 	}
+
 }

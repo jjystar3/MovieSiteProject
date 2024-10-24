@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,31 +14,39 @@ import com.example.demo.repository.MemberRepository;
 @Service
 public class MemberServiceImpl implements MemberService {
 	
-	String admin = "_admin"; // 
+	String admin = "_admin"; // 관리자 등급 설정 키워드
 	
 	@Autowired
 	MemberRepository memberRepository;
 
-//	@Autowired
-//	PasswordEncoder passwordEncoder;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@Override
 	public boolean signUp(MemberDTO dto) {
 		
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String getDtoId = dto.getId();
+		String processId;
 		
-		String id = dto.getId();
-		MemberDTO getDto = memberCheck(id);
-		if (getDto != null) {
-			return false;
+		if(getDtoId.endsWith(admin)) {
+			 processId  = getDtoId.substring(0, getDtoId.length() - admin.length());
+		} else {
+			processId = getDtoId;
 		}
+		
+		MemberDTO getDto = memberInquiry(processId);
+		
+		if (getDto != null) {
+			System.out.println("이미 존재하는 아이디");
+			return false;
+		} 
 
 		MemberEntity entity = dtoToEntity(dto);
 		String enPw = passwordEncoder.encode(entity.getPassword());
 		entity.setPassword(enPw);
 
-		if (id.endsWith(admin)) {
-			entity.setId(id.replace(admin, ""));
+		if (getDtoId.endsWith(admin)) {
+			entity.setId(getDtoId.replace(admin, ""));
 			entity.setRole(RoleEnum.ROLE_ADMIN);
 		} else {
 			entity.setRole(RoleEnum.ROLE_USER);
@@ -49,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO memberCheck(String id) {
+	public MemberDTO memberInquiry(String id) {
 		
 		Optional<MemberEntity> optional = memberRepository.findById(id);
 		if (optional.isPresent()) {

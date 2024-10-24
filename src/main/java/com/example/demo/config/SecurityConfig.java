@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration // 스프링 설정 클래스
@@ -30,7 +32,7 @@ public class SecurityConfig {
 		// 로그인 성공 시 이동할 주소 설정
 		http.formLogin()
 			.loginPage("/customlogin")
-			.loginProcessingUrl("/login")
+			.loginProcessingUrl("/login") // 매개변수(경로값)는 고정값
 			.successHandler((request, response, authentication) -> {
 						
 						// 로그인 성공시 메인화면으로 이동
@@ -43,5 +45,10 @@ public class SecurityConfig {
 		http.csrf().disable();
 		
 		return http.build();
+	}
+	
+	@Bean // 빈을 생성하여 컨테이너에 저장 
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 }

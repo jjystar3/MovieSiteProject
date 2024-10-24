@@ -7,7 +7,7 @@ public interface MemberService {
 
 	boolean signUp(MemberDTO dto); // 회원가입
 	
-	MemberDTO memberCheck(String id); // 회원 단건 조회
+	MemberDTO memberInquiry(String id); // 회원 단건 조회
 	
 		default MemberDTO entityToDto(MemberEntity entity) {
 			MemberDTO dto = MemberDTO.builder()

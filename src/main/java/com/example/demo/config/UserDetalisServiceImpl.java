@@ -23,7 +23,7 @@ public class UserDetalisServiceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		// 아이디로 회원 조회
-		MemberDTO dto = memberService.memberCheck(username);
+		MemberDTO dto = memberService.memberInquiry(username);
 		
 		// 회원이 있으면 로그인 성공, 없으면 실패
 		if(dto!=null) {

@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -20,28 +21,28 @@ public class MemberRepositoryTest {
 	MemberRepository memberRepository;
 	
 	@Test
-	void 회원등급_등록() {
+	void 일반등급_회원가입() {
 		
 		MemberDTO dto = MemberDTO.builder()
 				.id("user1")
 				.password("1234")
-				.name("이름1")
-				.nickName("별명1")
-				.eMail("Mail1")
+				.name("회원 이름1")
+				.nickName("회원 별명1")
+				.eMail("회원 Mail1")
 				.build();
 		
 		memberService.signUp(dto);
 	}
 	
 	@Test
-	void 관리자등급_등록() {
+	void 관리자등급_회원가입() {
 		
 		MemberDTO dto = MemberDTO.builder()
-				.id("admin2_admin")
+				.id("admin1_admin")
 				.password("1234")
-				.name("이름2")
-				.nickName("별명2")
-				.eMail("Mail2")
+				.name("관리자 이름1")
+				.nickName("관리자 별명1")
+				.eMail("관리자 Mail1")
 				.build();
 		
 		memberService.signUp(dto);
@@ -49,9 +50,18 @@ public class MemberRepositoryTest {
 	
 	@Test
 	void 회원_단건조회() {
-		Optional<MemberEntity> optional = memberRepository.findById("user1");
+		Optional<MemberEntity> optional = memberRepository.findById("admin1");
+		System.out.println("optional: " + optional);
 		if(optional.isPresent()) {
 			MemberEntity entity = optional.get();
+			System.out.println("entity:	" + entity);
+		}
+	}
+	
+	@Test
+	void 회원_전제조회() {
+		List<MemberEntity> list = memberRepository.findAll();
+		for(MemberEntity entity : list) {
 			System.out.println(entity);
 		}
 	}
