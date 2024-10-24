@@ -1,5 +1,7 @@
 package com.example.demo.member.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -14,15 +16,11 @@ import com.example.demo.member.service.MemberService;
 import com.example.demo.movies.dto.MoviesDTO;
 
 @Controller
-//@RequestMapping("/member") //중간경로 제거
 public class MemberController {
 	
 	@Autowired
 	MemberService service;
 
-	// 목록 화면을 반환하는 메소드
-	// /member/list?page=1
-//	@GetMapping("/list")
 	@GetMapping("/member/list") //주소수정
 	public void list(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 		Page<MemberDTO> list = service.getList(page);
@@ -59,7 +57,9 @@ public class MemberController {
 	}
 
 	@GetMapping("/member/profile")
-	public void profile(@RequestParam(name = "id") Long id, Model model) {
+	public void profile(Principal principal, Model model) {
+		
+		Long id = Long.parseLong(principal.getName());
 		
 		MemberDTO dto = service.findById(id);
 		
@@ -68,7 +68,9 @@ public class MemberController {
 	}
 
 	@GetMapping("/member/modify")
-	public void modify(@RequestParam(name = "id") Long id, Model model) {
+	public void modify(Principal principal, Model model) {
+
+		Long id = Long.parseLong(principal.getName());
 		
 		MemberDTO dto = service.findById(id);
 		

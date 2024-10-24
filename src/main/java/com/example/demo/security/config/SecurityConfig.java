@@ -22,8 +22,8 @@ public class SecurityConfig {
 	            .requestMatchers("/assets/**", "/css/**", "/js/**").permitAll()  // Permit static resources
 	            .requestMatchers("/movies/modify/**").hasRole("ADMIN")  // Admin-only for movie modification
 	            .requestMatchers("/movies/**").hasAnyRole("ADMIN", "USER")  // Movies accessible by ADMIN and USER
-	            .requestMatchers("/member/profile/**").hasAnyRole("ADMIN", "USER")  // Profile accessible by ADMIN and USER
-	            .requestMatchers("/member/modify/**").hasAnyRole("ADMIN", "USER")  // Profile accessible by ADMIN and USER
+	            .requestMatchers("/member/profile/**").authenticated()  // Only authenticated users can access profile
+	            .requestMatchers("/member/modify/**").authenticated()  // Profile accessible by ADMIN and USER
 	            .requestMatchers("/member/**").hasRole("ADMIN")  // Admin-only for other member routes
 	            .anyRequest().permitAll()  // Allow all other routes
         )
