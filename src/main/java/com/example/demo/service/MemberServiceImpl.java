@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 			processId = getDtoId;
 		}
 		
-		MemberDTO getDto = memberInquiry(processId);
+		MemberDTO getDto = memberRead(processId);
 		
 		if (getDto != null) {
 			System.out.println("이미 존재하는 아이디");
@@ -56,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberDTO memberInquiry(String id) {
+	public MemberDTO memberRead(String id) {
 		
 		Optional<MemberEntity> optional = memberRepository.findById(id);
 		if (optional.isPresent()) {

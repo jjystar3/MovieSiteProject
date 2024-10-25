@@ -23,14 +23,13 @@ public class UserDetalisServiceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		// 아이디로 회원 조회
-		MemberDTO dto = memberService.memberInquiry(username);
+		MemberDTO dto = memberService.memberRead(username);
 		
 		// 회원이 있으면 로그인 성공, 없으면 실패
 		if(dto!=null) {
-			return new CustomUser(dto);
+			return new CustomUser(dto); // 스프링 시큐리티에 반환
 		} else {
-			// 에러 발생
-			throw new UsernameNotFoundException("");
+			throw new UsernameNotFoundException(""); // 에러 발생
 		}
 	}
 

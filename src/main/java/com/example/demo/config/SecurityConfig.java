@@ -17,7 +17,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
-		// 메뉴별 접근 권한 설정
+		// 페이지별  접근 권한 설정
 		// 회원가입: 아무나 접근 가능
 		http.authorizeRequests()
 		.requestMatchers("/register").permitAll()
@@ -31,8 +31,10 @@ public class SecurityConfig {
 		// 로그인화면과 로그인 처리 주소 설정
 		// 로그인 성공 시 이동할 주소 설정
 		http.formLogin()
-			.loginPage("/customlogin")
-			.loginProcessingUrl("/login") // 매개변수(경로값)는 고정값
+			.loginPage("/customlogin") // 로그인 실패시 매핑될 컨트롤러 경로
+			
+			// 로그인 폼에서 기입한 데이터를 UsernamePasswordAuthenticationFilter라는 놈이 가로채서 loginProcessingUrl()의 파라미터 경로로 넣어줌 
+			.loginProcessingUrl("/login") // 로그인 파일의 <form action="/login" method="post">의 "/login"과 같아함
 			.successHandler((request, response, authentication) -> {
 						
 						// 로그인 성공시 메인화면으로 이동
