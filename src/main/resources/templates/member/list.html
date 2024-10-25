@@ -4,26 +4,32 @@
 
 	<th:block th:fragment="content">
 
-		<h1>Member List Page</h1>
+		<h1>관리자 페이지</h1>
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>아이디</th>
-					<th>이름</th>
+					<th>ID</th>
+					<th>이메일</th>
 					<th>등록일</th>
 				</tr>
 			</thead>
 			
 			<!-- 테이블 처리 -->
 			<tbody>
+
+				<!--[[${list}]]-->
+
 				<tr th:each="dto : ${list}">
+
+					<!--[[${dto}]]-->
+
 					<th>
 						<a th:href="@{/member/read(id = ${dto.id}, page= ${list.number + 1})}">
 							[[${dto.id}]]
 						</a>
 					</th>
-					<td>[[${dto.name}]]</td>
+					<td>[[${dto.email}]]</td>
 					<td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
 				</tr>
 

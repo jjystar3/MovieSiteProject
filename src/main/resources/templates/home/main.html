@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<th:block th:replace="~{/layout/basic :: setContent(~{this::page1} )}">
-	<!-- 템플릿 조각 전달 -->
-	<th:block th:fragment="page1">
-		<!-- 템플릿 만들기 -->
-		<h1>Template Page1</h1>
-
-		<!--인증 객체 정보-->
-		<b>Authenticated DTO:</b>
-		<div sec:authentication="principal"></div>
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+	<th:block th:fragment="content">
+		<div sec:authorize="isAnonymous()">
 		
-		<!-- 사용자 아이디 -->
-		<b>Authenticated username:</b>
-		<div sec:authentication="name"></div>
+    		<h1>최고의 스트리밍 서비스</h1>
+    		<h1>무한한 컨텐츠</h1>
+    		<div style="width:100%; display: flex; flex-wrap: wrap;">
+    
+    		
+			    <div th:each="dto : ${list}" style="padding: 3px; background-color: black;">
+			       	<img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${dto.posterPath})}" alt="" width="250px">
+			    </div>
+			
+			</div>
+			
+		</div>
+		<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 		
-		<!-- 사용자가 가지고 있는 권한 -->
-		<b>Authenticated user role:</b>
-		<div sec:authentication="principal.authorities"></div>
+    		<h1>영화 인기순 정렬</h1>
+			<div style="width:100%; display: flex; flex-wrap: wrap;">
+	    
+			    <div th:each="dto : ${list}" style="padding: 3px; background-color: black;">
+			        <a th:href="@{/movies/read(movieId=${dto.movieId})}">
+			       		<img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${dto.posterPath})}" alt="" width="250px">
+			       	</a>
+			    </div>
+			
+			</div>
+		</div>
 	</th:block>
 </th:block>

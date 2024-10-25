@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 
-<th:block th:fragment="setContent(send)"> <!-- 템플릿 조각 받기 -->
+<th:block th:fragment="setContent(content)"> <!-- 파라미터로 조각코드 받기 -->
 
 <head>
     <meta charset="utf-8" />
@@ -18,23 +18,18 @@
     <!-- Core theme JS-->
     <script src="/js/scripts.js"></script>
     <!-- JS 라이브러리 추가 -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
-
 <body>
 <div class="d-flex" id="wrapper">
     <!-- Sidebar-->
     <div class="border-end bg-white" id="sidebar-wrapper">
         <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
         <div class="list-group list-group-flush">
-<!--            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>-->
-<!--            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>-->
-<!--            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>-->
-<!--            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>-->
-<!--            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>-->
-<!--            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>-->
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/member/list" sec:authorize="hasRole('ROLE_ADMIN')">회원관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/board/list" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">게시물관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/member/list" sec:authorize="hasRole('ROLE_ADMIN')">관리자 페이지</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/member/profile" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">마이 페이지</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/movies/list?search=" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">검색</a>
+        	
         </div>
     </div>
     <!-- Page content wrapper-->
@@ -47,7 +42,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                         <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                        <!-- 로그인, 로그아웃, 회원가입 버튼 추가 -->
+                        <li class="nav-item"><a class="nav-link" href="/customlogin" sec:authorize="isAnonymous()">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register" sec:authorize="isAnonymous()">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">Logout</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -63,7 +61,7 @@
         </nav>
         <!-- Page content-->
         <div class="container-fluid">
-            <th:block th:replace = "${send}"></th:block> <!-- 템플릿 조각 삽입 -->
+            <th:block th:replace = "${content}"></th:block> <!-- 전달받은 파라미터 사용하기 -->
         </div>
     </div>
 </div>
