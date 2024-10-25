@@ -29,9 +29,8 @@ public class OpenAPITest {
 	
 	@Value("${tmdb.api.key}")
 	private String serviceKey;
-	String movieList = "popular"; //  now_playing  popular  top_rated  upcoming
 	String language = "ko-KR"; //  en-US  ko-KR
-	String adult = "include_adult=true";
+	String adult = "include_adult=false";
 	
 	@Autowired
 	MoviesRepository moviesRepository;
