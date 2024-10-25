@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+.wrap {
+    width: 100%;
+    height: auto;
+    background-color: #060606;
+}
+
+/* 섹션1 메인 */
+.section1 {
+    width: 100%;
+    overflow: hidden;
+}
+
+.section1_wrap {
+    width: 100%;
+}
+
+.section1_box {
+    width: 110%;
+    height: 56.25vw;
+    max-height: 100vh;
+    overflow: hidden;
+}
+.section1_box-vod {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    object-position: center;
+    background: linear-gradient(to bottom, black 0%, black 50%, rgba(0, 0, 0, 0.5) 75%, #060606 100%);
+}
+.section1_box-title {
+    position: absolute;
+    bottom: 30%;
+}
+.section1_box-title h1 {
+    color: white;
+    font-size: 5vw;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.section1_box-title a {
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: rgb(16, 16, 16);
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+.section1_box-title a i {
+    margin-right: 5px;
+}
+.section1_box-title a:hover {
+    color: white;
+    background-color: rgba(109, 109, 110, 0.7);
+}
+
+
+/* 섹션2 인기영화 슬라이드 */
+.section2 {
+    margin-top: -5vw;
+}
+
+/*** 섹션 공통 ***/
+/* 섹션 페딩 */
+.section1_box-titlePa {
+    left: 50px;
+}
+.section_padding {
+    padding-left: 50px;
+}
+
+/* 섹션, 타이틀 */
+.section {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 3vw;
+}
+.section .section_title h3 {
+    color: white;
+    font-weight: bold;
+    font-size: 1.3vw;
+    margin-bottom: 5px;
+}
+
+/* 슬라이드 */
+.section .swiper-slide {
+    overflow: hidden;
+    border-radius: 5px;
+}
+.section .swiper-slide img {
+    transition: 0.3s;
+}
+.section .swiper-slide:hover img {
+    transform: scale(1.1);
+}
+
+/* 슬라이드 버튼 */
+.section .swiper-button-next {
+    right: 0px;
+    top: 0;
+    margin-top: 0;
+    width: 70px;
+    height: 100%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.section .swiper-button-prev {
+    top: 0;
+    left: -50px;
+    margin-top: 0;
+    width: 70px;
+    height: 100%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.section .swiper-button-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.section .swiper-button-prev:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.section .swiper-button-prev {
+    color: white;
+}
+.section .swiper-button-next:after, 
+.section .swiper-button-prev:after {
+    font-size: 2em;
+}
+/* 버튼이 비활성화된 상태일 때 완전히 숨기기 */
+.swiper-button-next.swiper-button-disabled, 
+.swiper-button-prev.swiper-button-disabled {
+    display: none; /* 비활성화된 상태일 때 아예 보이지 않도록 설정 */
+}

@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+#footer {
+  width: 100%;
+  background-color: #060606;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer_box {
+  width: 100%;
+  max-width: 1024px;
+  color: #808080;
+}
+
+/* 깃허브 */
+.github_item {
+  margin-top: 5px;
+}
+.github_item i {
+  margin-right: 5px;
+}
+
+/* 텍스트 */
+.copyright_item {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid gray;
+}
