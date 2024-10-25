@@ -140,6 +140,7 @@ public class OpenAPITest {
                 // Build and save the movie entity
                 Movies moviesEntity = Movies.builder()
                         .movieId(Long.valueOf(movieResult.id))
+                        .popularity(movieResult.popularity)
                         .adult(movieResult.adult)
                         .title(movieResult.title)
                         .overview(movieResult.overview)

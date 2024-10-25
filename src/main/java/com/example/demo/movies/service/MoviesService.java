@@ -21,8 +21,8 @@ public interface MoviesService {
 	default Movies dtoToEntity(MoviesDTO dto) {
 
 		Movies entity = Movies.builder()
-				.id(dto.getId())
 				.movieId(dto.getMovieId())
+				.popularity(dto.getPopularity())
 				.adult(dto.getAdult())
 				.title(dto.getTitle())
 				.overview(dto.getOverview())
@@ -41,8 +41,8 @@ public interface MoviesService {
 	default MoviesDTO entityToDTO(Movies entity) {
 
 		MoviesDTO dto = MoviesDTO.builder()
-				.id(entity.getId())
 				.movieId(entity.getMovieId())
+				.popularity(entity.getPopularity())
 				.adult(entity.getAdult())
 				.title(entity.getTitle())
 				.overview(entity.getOverview())

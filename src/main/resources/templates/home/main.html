@@ -3,18 +3,32 @@
 
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
 	<th:block th:fragment="content">
-		<h1>Main Page</h1>
-		<!-- 
-		인증시 사용된 객체에 대한 정보
-		<b>Authenticated DTO:</b>
-		<div sec:authentication="principal"></div>
-
-		인증시 사용된 객체의 아이디
-		<b>Authenticated username:</b>
-		<div sec:authentication="name"></div>
-
-		객체의 권한
-		<b>Authenticated user role:</b>
-		<div sec:authentication="principal.authorities"></div> -->
+		<div sec:authorize="isAnonymous()">
+		
+    		<h1>최고의 스트리밍 서비스</h1>
+    		<h1>무한한 컨텐츠</h1>
+    		<div style="width:100%; display: flex; flex-wrap: wrap;">
+    
+    		
+			    <div th:each="dto : ${list}" style="padding: 3px; background-color: black;">
+			       	<img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${dto.posterPath})}" alt="" width="250px">
+			    </div>
+			
+			</div>
+			
+		</div>
+		<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+		
+    		<h1>영화 인기순 정렬</h1>
+			<div style="width:100%; display: flex; flex-wrap: wrap;">
+	    
+			    <div th:each="dto : ${list}" style="padding: 3px; background-color: black;">
+			        <a th:href="@{/movies/read(movieId=${dto.movieId})}">
+			       		<img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${dto.posterPath})}" alt="" width="250px">
+			       	</a>
+			    </div>
+			
+			</div>
+		</div>
 	</th:block>
 </th:block>

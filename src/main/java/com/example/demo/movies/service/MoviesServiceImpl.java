@@ -22,7 +22,7 @@ public class MoviesServiceImpl implements MoviesService {
 	@Override
 	public List<MoviesDTO> getList() {
 		
-		Sort sort = Sort.by("id").ascending(); //descending()
+		Sort sort = Sort.by("popularity").descending(); //descending()  ascending()
 		
 		List<Movies> result = moviesRepository.findAll(sort);
 		
@@ -38,7 +38,7 @@ public class MoviesServiceImpl implements MoviesService {
 	@Override
 	public MoviesDTO read(Long movieId) {
 
-		Optional<Movies> optional = moviesRepository.findByMovieId(movieId);
+		Optional<Movies> optional = moviesRepository.findById(movieId);
 		
 		if(optional.isPresent()) {
 			Movies movies = optional.get();
@@ -55,7 +55,7 @@ public class MoviesServiceImpl implements MoviesService {
 
 		// 전달받은 DOT에서 게시물 번호를 꺼내고, DB에 존제하는지 확인
 		Long movieId = dto.getMovieId();
-		Optional<Movies> optional = moviesRepository.findByMovieId(movieId);
+		Optional<Movies> optional = moviesRepository.findById(movieId);
 		
 		if(optional.isPresent()) {
 
@@ -79,7 +79,7 @@ public class MoviesServiceImpl implements MoviesService {
 	public void remove(Long movieId) {
 
 		// 게시물이 존재하는지 확인하고 삭제
-		Optional<Movies> optional = moviesRepository.findByMovieId(movieId);
+		Optional<Movies> optional = moviesRepository.findById(movieId);
 
 		if(optional.isPresent()) {
 			
@@ -89,7 +89,7 @@ public class MoviesServiceImpl implements MoviesService {
 //			commentRepository.deleteByBoard(board);
 			
 			// 게시물 삭제
-			moviesRepository.deleteByMovieId(movieId);
+			moviesRepository.deleteById(movieId);
 		}
 		
 	}

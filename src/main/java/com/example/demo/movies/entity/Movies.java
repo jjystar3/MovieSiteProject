@@ -27,10 +27,9 @@ import lombok.ToString;
 public class Movies {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
-	
 	Long movieId;
+	
+	Double popularity;
 	
 	Boolean adult;
 

@@ -17,8 +17,8 @@ import lombok.ToString;
 @Builder
 public class MoviesDTO {
 
-	int id;
     Long movieId;
+	Double popularity;
     Boolean adult;
     String title;
     String overview;
