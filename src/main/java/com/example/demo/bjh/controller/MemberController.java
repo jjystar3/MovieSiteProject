@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.bjh.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.dto.MemberDTO;
-import com.example.demo.service.MemberService;
+import com.example.demo.bjh.dto.MemberDTO;
+import com.example.demo.bjh.service.MemberService;
 
 @Controller
 public class MemberController {

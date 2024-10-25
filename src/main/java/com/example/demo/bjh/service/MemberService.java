@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.demo.bjh.service;
 
-import com.example.demo.dto.MemberDTO;
-import com.example.demo.entity.MemberEntity;
+import com.example.demo.bjh.dto.MemberDTO;
+import com.example.demo.bjh.entity.MemberEntity;
 
 public interface MemberService {
 

@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.bjh.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.MemberDTO;
-import com.example.demo.service.MemberService;
+import com.example.demo.bjh.dto.MemberDTO;
+import com.example.demo.bjh.service.MemberService;
 
 // 커스텀 인증 클래스
 // 로그인 처리 서비스

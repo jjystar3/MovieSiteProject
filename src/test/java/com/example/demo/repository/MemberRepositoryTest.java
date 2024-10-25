@@ -7,9 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.demo.dto.MemberDTO;
-import com.example.demo.entity.MemberEntity;
-import com.example.demo.service.MemberService;
+import com.example.demo.bjh.dto.MemberDTO;
+import com.example.demo.bjh.entity.MemberEntity;
+import com.example.demo.bjh.repository.MemberRepository;
+import com.example.demo.bjh.service.MemberService;
 
 @SpringBootTest
 public class MemberRepositoryTest {

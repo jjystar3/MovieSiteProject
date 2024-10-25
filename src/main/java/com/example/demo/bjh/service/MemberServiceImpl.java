@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.bjh.service;
 
 import java.util.Optional;
 
@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.MemberDTO;
-import com.example.demo.entity.MemberEntity;
-import com.example.demo.entity.RoleEnum;
-import com.example.demo.repository.MemberRepository;
+import com.example.demo.bjh.dto.MemberDTO;
+import com.example.demo.bjh.entity.MemberEntity;
+import com.example.demo.bjh.entity.RoleEnum;
+import com.example.demo.bjh.repository.MemberRepository;
 
 @Service
 public class MemberServiceImpl implements MemberService {

@@ -1,11 +1,11 @@
-package com.example.demo.config;
+package com.example.demo.bjh.config;
 
 import java.util.Arrays;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import com.example.demo.dto.MemberDTO;
+import com.example.demo.bjh.dto.MemberDTO;
 
 public class CustomUser extends User {
 	

@@ -1,8 +1,8 @@
-package com.example.demo.dto;
+package com.example.demo.bjh.dto;
 
 import java.time.LocalDateTime;
 
-import com.example.demo.entity.RoleEnum;
+import com.example.demo.bjh.entity.RoleEnum;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
