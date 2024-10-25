@@ -13,6 +13,10 @@
 			    <div th:each="dto : ${list}" style="padding: 3px; background-color: black;">
 			       	<img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${dto.posterPath})}" alt="" width="250px">
 			    </div>
+			    
+			    <!-- <div style="padding: 3px; background-color: black;">
+				    <img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[0].posterPath})}" alt="" width="250px">
+				</div> -->
 			
 			</div>
 			
