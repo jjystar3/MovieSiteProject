@@ -22,7 +22,7 @@ public class MoviesServiceTest {
 
 	@Test
 	public void 게시물목록조회() {
-		List<MoviesDTO> result = moviesService.getList(); 
+		List<MoviesDTO> result = moviesService.getList(""); 
 		for(MoviesDTO dto : result) {
 			System.out.println(dto);
 		}

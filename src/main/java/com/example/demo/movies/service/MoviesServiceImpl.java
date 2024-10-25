@@ -20,19 +20,36 @@ public class MoviesServiceImpl implements MoviesService {
 	MoviesRepository moviesRepository;
 
 	@Override
-	public List<MoviesDTO> getList() {
+	public List<MoviesDTO> getList(String search) {
 		
-		Sort sort = Sort.by("popularity").descending(); //descending()  ascending()
+		if(search == null || search.equals("")) {
+
+			Sort sort = Sort.by("popularity").descending(); //descending()  ascending()
+			
+			List<Movies> result = moviesRepository.findAll(sort);
+			
+			List<MoviesDTO> list = new ArrayList<>();
+			
+			list = result.stream()
+					.map(entity -> entityToDTO(entity))
+					.collect(Collectors.toList());
+			
+			return list;
+			
+		}else {
+			
+			List<Movies> result = moviesRepository.findByTitleContainingOrderByPopularityDesc(search);
+			
+			List<MoviesDTO> list = new ArrayList<>();
+			
+			list = result.stream()
+					.map(entity -> entityToDTO(entity))
+					.collect(Collectors.toList());
+			
+			return list;
+			
+		}
 		
-		List<Movies> result = moviesRepository.findAll(sort);
-		
-		List<MoviesDTO> list = new ArrayList<>();
-		
-		list = result.stream()
-				.map(entity -> entityToDTO(entity))
-				.collect(Collectors.toList());
-		
-		return list;
 	}
 
 	@Override

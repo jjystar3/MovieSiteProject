@@ -19,7 +19,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model model) {
 
-		List<MoviesDTO> list = moviesService.getList();
+		List<MoviesDTO> list = moviesService.getList("");
 		
 		model.addAttribute("list", list);
 		

@@ -7,7 +7,7 @@ import com.example.demo.movies.entity.Movies;
 
 public interface MoviesService {
 
-	List<MoviesDTO> getList();
+	List<MoviesDTO> getList(String search);
 	
 	MoviesDTO read(Long movieId);
 

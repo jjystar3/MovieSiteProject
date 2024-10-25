@@ -22,9 +22,9 @@ public class MoviesController {
 	MoviesService moviesService;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(@RequestParam(name = "search") String search, Model model) {
 
-		List<MoviesDTO> list = moviesService.getList();
+		List<MoviesDTO> list = moviesService.getList(search);
 		
 		model.addAttribute("list", list);
 	}

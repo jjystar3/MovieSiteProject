@@ -6,15 +6,25 @@
 <!-- 1. content 라는 이름으로 조각 정의하기 -->
 <th:block th:fragment="content">
 
-<div style="width:100%; display: flex; flex-wrap: wrap;">
-    
-    <div th:each="dto : ${list}" style="padding: 3px; background-color: black;">
-        <a th:href="@{/movies/read(movieId=${dto.movieId})}">
-       		<img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${dto.posterPath})}" alt="" width="250px">
-       	</a>
-    </div>
+<div>
 
+	<form action="/movies/list">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit">Search</button>
+    </form>
+
+	<div style="width:100%; display: flex; flex-wrap: wrap;">
+	    
+	    <div th:each="dto : ${list}" style="padding: 3px; background-color: black;">
+	        <a th:href="@{/movies/read(movieId=${dto.movieId})}">
+	       		<img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${dto.posterPath})}" alt="" width="250px">
+	       	</a>
+	    </div>
+	
+	</div>
 </div>
+
+
 
 </th:block>
 
