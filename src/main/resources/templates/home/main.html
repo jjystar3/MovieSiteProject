@@ -191,6 +191,50 @@
                 </div>
             </div>
         </section>
+        
+        <section class="section section3">
+            <div class="section3_wrap section_padding">
+                <div class="section_title section3_title">
+                    <h3>고전영화</h3>
+                </div>
+                <div class="swiper-container section3_swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide section3-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[150].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[150].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide2">
+                            <a th:href="@{/movies/read(movieId=${list[151].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[151].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide3">
+                            <a th:href="@{/movies/read(movieId=${list[152].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[152].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide4">
+                            <a th:href="@{/movies/read(movieId=${list[153].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[153].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide5">
+                            <a th:href="@{/movies/read(movieId=${list[154].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[154].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide6">
+                            <a th:href="@{/movies/read(movieId=${list[163].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[163].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide7">
+                            <a th:href="@{/movies/read(movieId=${list[164].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[164].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide8">
+                            <a th:href="@{/movies/read(movieId=${list[157].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[157].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide9">
+                            <a th:href="@{/movies/read(movieId=${list[158].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[158].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide10">
+                            <a th:href="@{/movies/read(movieId=${list[165].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[165].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next swiper-button-next3"></div>
+                    <div class="swiper-button-prev swiper-button-prev3"></div>
+                </div>
+            </div>
+        </section>
 
         <th:block th:replace="~{/common/footer :: setContent(~{this::content})}"></th:block>
     </div>
