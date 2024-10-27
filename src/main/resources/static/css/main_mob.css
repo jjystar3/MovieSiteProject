@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+@media (max-width: 1024px) {
+    .section1_box-title h1 {
+        margin-bottom: 5px;
+    }
+    .section1_box-title a {
+        font-size: 1.3vw;
+    }
+
+    /* 섹션2 인기영화 슬라이드 */
+    .section2 {
+        margin-top: -5vw;
+    }
+
+    /*** 섹션 공통 ***/
+    /* 섹션 페딩 */
+    .section1_box-titlePa {
+        left: 25px;
+    }
+    .section_padding {
+        padding-left: 25px;
+    }
+
+    /* 섹션, 타이틀 */
+    .section {
+        margin-bottom: 5vw;
+    }
+    .section .section_title h3 {
+        font-size: 1.6vw;
+        margin-bottom: 5px;
+    }
+
+    /* 슬라이드 버튼 */
+    .section .swiper-button-next {
+        width: 50px;
+    }
+    .section .swiper-button-prev {
+        left: -25px;
+        width: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section1_box-title {
+        bottom: 25%;
+    }
+    .section1_box-title h1 {
+        margin-bottom: 5px;
+    }
+    .section1_box-title a {
+        font-size: 2vw;
+    }
+
+    /* 섹션2 인기영화 슬라이드 */
+    .section2 {
+        margin-top: -4vw;
+    }
+
+    /*** 섹션 공통 ***/
+    /* 섹션 페딩 */
+    .section1_box-titlePa {
+        left: 25px;
+    }
+    .section_padding {
+        padding-left: 25px;
+    }
+
+    /* 섹션, 타이틀 */
+    .section {
+        margin-bottom: 7vw;
+    }
+    .section .section_title h3 {
+        font-size: 2.2vw;
+        margin-bottom: 5px;
+    }
+
+    /* 슬라이드 버튼 */
+    .section .swiper-button-next {
+        width: 40px;
+    }
+    .section .swiper-button-prev {
+        left: -25px;
+        width: 40px;
+    }
+}

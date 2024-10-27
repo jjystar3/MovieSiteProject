@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
@@ -13,10 +13,6 @@
 			    <div th:each="dto : ${list}" style="padding: 3px; background-color: black;">
 			       	<img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${dto.posterPath})}" alt="" width="250px">
 			    </div>
-			    
-			    <!-- <div style="padding: 3px; background-color: black;">
-				    <img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[0].posterPath})}" alt="" width="250px">
-				</div> -->
 			
 			</div>
 			
@@ -35,4 +31,170 @@
 			</div>
 		</div>
 	</th:block>
-</th:block>
+</th:block> -->
+
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<th:block th:replace="~{/common/head :: setContent(~{this::content})}"></th:block>
+
+<body>
+    <div class="wrap">
+
+ 		<th:block th:replace="~{/common/header :: setContent(~{this::content})}"></th:block>
+
+        <section class="section1">
+            <div class="section1_wrap">
+                <div class="section1_box">
+                    <video class="section1_box-vod" loop muted autoplay>
+                        <source src="/vod/Joker.mp4" type="video/mp4">
+                    </video>
+                    <div class="section1_box-title section1_box-titlePa">
+                        <h1>Joker: Folie a Deux</h1>
+                        <a href="#">
+                            <i class="fa-solid fa-circle-info"></i>상세정보
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section2">
+            <div class="section2_wrap section_padding">
+                <div class="section_title section2_title">
+                    <h3>인기영화</h3>
+                </div>
+                <div class="swiper-container section2_swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[0].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[0].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[1].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[1].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[2].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[2].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[3].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[3].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[4].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[4].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[5].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[5].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[6].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[6].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[7].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[7].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[8].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[8].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section2-slide1">
+                            <a th:href="@{/movies/read(movieId=${list[9].movieId})}"><img th:src="@{https://image.tmdb.org/t/p/original{poster}(poster=${list[9].posterPath})}" alt="영화포스터"></a>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next swiper-button-next2"></div>
+                    <div class="swiper-button-prev swiper-button-prev2"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section3">
+            <div class="section3_wrap section_padding">
+                <div class="section_title section3_title">
+                    <h3>액션영화</h3>
+                </div>
+                <div class="swiper-container section3_swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide section3-slide1">
+                            <a href="#"><img src="/images/ac1.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide2">
+                            <a href="#"><img src="/images/ac2.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide3">
+                            <a href="#"><img src="/images/ac3.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide4">
+                            <a href="#"><img src="/images/ac4.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide5">
+                            <a href="#"><img src="/images/ac5.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide6">
+                            <a href="#"><img src="/images/ac6.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide7">
+                            <a href="#"><img src="/images/ac7.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide8">
+                            <a href="#"><img src="/images/ac8.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide9">
+                            <a href="#"><img src="/images/ac9.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide10">
+                            <a href="#"><img src="/images/ac10.jpg" alt="영화포스터"></a>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next swiper-button-next3"></div>
+                    <div class="swiper-button-prev swiper-button-prev3"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section3">
+            <div class="section3_wrap section_padding">
+                <div class="section_title section3_title">
+                    <h3>판타지영화</h3>
+                </div>
+                <div class="swiper-container section3_swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide section3-slide1">
+                            <a href="#"><img src="/images/sf1.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide2">
+                            <a href="#"><img src="/images/sf2.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide3">
+                            <a href="#"><img src="/images/sf3.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide4">
+                            <a href="#"><img src="/images/sf4.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide5">
+                            <a href="#"><img src="/images/sf5.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide6">
+                            <a href="#"><img src="/images/sf6.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide7">
+                            <a href="#"><img src="/images/sf7.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide8">
+                            <a href="#"><img src="/images/sf8.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide9">
+                            <a href="#"><img src="/images/sf9.jpg" alt="영화포스터"></a>
+                        </div>
+                        <div class="swiper-slide section3-slide10">
+                            <a href="#"><img src="/images/sf10.jpg" alt="영화포스터"></a>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next swiper-button-next3"></div>
+                    <div class="swiper-button-prev swiper-button-prev3"></div>
+                </div>
+            </div>
+        </section>
+
+        <th:block th:replace="~{/common/footer :: setContent(~{this::content})}"></th:block>
+    </div>
+</body>
+
+</html>
+
