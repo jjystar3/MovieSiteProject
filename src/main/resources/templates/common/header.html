@@ -6,21 +6,21 @@
     </div>
     <div class="head_box">
         <div class="head_box-item seach_item">
-            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="/movies/list?search=" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"><i class="fa-solid fa-magnifying-glass"></i></a>
         </div>
         <div class="head_box-item login_item">
             <a class="login_item-login" href="/customlogin" sec:authorize="isAnonymous()"><p>LOGIN</p></a>
-            <a class="login_item-logout" href="/member/profile" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"><p>MY PAGE</p></a>
+            <a class="login_item-logout" href="/member/profile" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')"><p>프로필</p></a>
             <div class="mypage_item">
                 <ul>
                 	<li>
                     	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="/member/list" sec:authorize="hasRole('ROLE_ADMIN')">
-                    		<i class="fa-regular fa-user"></i>관리자
+                    		<i class="fa-solid fa-user"></i>회원관리
                     	</a>
                     </li>
                     <li>
                     	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="/member/profile" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-                    		<i class="fa-regular fa-user"></i>프로필
+                    		<i class="fa-regular fa-user"></i>계정관리
                     	</a>
                     </li>
                     <li><a href="#"><i class="fa-solid fa-question"></i>고객센터</a></li>

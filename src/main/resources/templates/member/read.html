@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+<!-- <th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
 
     <th:block th:fragment="content">
 
@@ -15,10 +15,10 @@
             <input type="password" class="form-control" name="password" th:value="${dto.password}" readonly>
         </div>
         
-        <!-- 등급 필드 -->
+        등급 필드
         <div class="form-group">
             <label >등급</label>
-            <!-- value 속성 수정 -->
+            value 속성 수정
             <input type="text" class="form-control" name="role" th:value="${dto.role}" readonly>
         </div>
         <div class="form-group">
@@ -37,3 +37,116 @@
     </th:block>
 
 </th:block>
+ -->
+ 
+ <html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ott</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="/images/favicon.ico">
+
+<!-- fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap"
+	rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="/css/profile_mob.css">
+
+<!-- jQuery -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+<!-- js -->
+<script defer th:src="@{/js/scripts.js}"></script>
+
+<!-- font awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- 스타일 -->
+<style>
+	.profile_right-box > div input:focus {
+	    border: 1px solid #cfcfcf;
+	    outline: none;
+	}
+	.profile_right-box > div .input_no {
+	    border: none;
+	    outline: none; 
+	    pointer-events: none; 
+	    background-color: transparent;
+	}
+</style>
+</head>
+<body>
+    <div class="main_logo">
+        <div>
+            <a href="http://localhost:8080/"> 
+                <img src="/images/logo.png" alt="로고">
+            </a>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="profile_box">
+
+            <div class="profile_left">
+                <a href="http://localhost:8080/"><i class="fa-solid fa-arrow-left"></i>넷플릭스로 돌아가기</a>
+                <a class="profile_action"  href="/member/list" sec:authorize="hasRole('ROLE_ADMIN')">회원관리</a>
+                <a href="/member/profile" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">계정</a>
+                <a href="">고객센터</a>
+            </div>
+
+            <div class="profile_left-mob">
+                <a class="profile_action" href="/member/list" sec:authorize="hasRole('ROLE_ADMIN')">회원관리</a>
+                <a href="/member/profile" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">계정</a>
+                <a href="">고객센터</a>
+            </div>
+            
+            <div class="profile_right">
+                <h1>회원관리</h1>
+                <p>회원정보</p>
+                <div class="profile_right-box">
+                    <div>
+                        <label>ID 번호</label>
+                        <input class="input_no" type="text" name="id" th:value="${dto.id}" placeholder="1" readonly>
+                    </div>
+                    <div>
+                        <label >이메일</label>
+                        <input type="text" name="email" th:value="${dto.email}"  >
+                    </div>
+                    <div>
+                        <label >비밀번호</label>
+                        <input type="password" name="password" th:value="${dto.password}" >
+                    </div>
+                    <div>
+                        <label >가입일</label>
+                        <input type="text" class="input_no" name="regDate" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+                    </div>
+                    <div>
+			            <label >수정일</label>
+			            <input type="text" class="input_no" name="modDate" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+			        </div>
+                </div>
+                <a class="profile_right-btn"  th:href="@{/member/list(page=${page})}">
+        			<button type="button" class="btn btn-info">목록으로</button>
+        		</a>
+            </div>
+        </div>
+
+    </div>
+    
+    <th:block
+		th:replace="~{/common/footer :: setContent(~{this::content})}"></th:block>
+</body>
+</html>
+
+ 
+ 

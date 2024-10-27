@@ -1,0 +1,192 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgb(249, 249, 249);
+}
+.wrap {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+   	flex-grow: 1;
+    min-height: calc(100vh - 100px);
+    padding-bottom: 100px;
+}
+.main_logo {
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+.main_logo > div {
+    max-width: 1200px;
+    width: 100%;
+    height: 70px;
+    padding: 0 50px;
+    z-index: 999;
+    margin: 0 auto;
+}
+.main_logo a {
+    width: 130px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.main_logo a img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile_box {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+}
+
+/* 왼쪽 모바일 */
+.profile_left-mob {
+    display: none;
+}
+
+/* 왼쪽 정보 */
+.profile_left {
+    width: 25%;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_left a {
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 5px 0px;
+    padding-left: 10px;
+    border-radius: 5px;
+    color: rgb(73, 73, 73);
+}
+.profile_left a:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.profile_left .profile_action {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.profile_left a:first-child {
+    margin-bottom: 25px;
+    font-size: 14px;
+    padding: 7px 0;
+    padding-left: 10px;
+    font-weight: bold;
+    color: black;
+}
+.profile_left a:first-child i {
+    margin-right: 5px;
+}
+
+/* 오른쪽 정보 */
+.profile_right {
+    width: 75%;
+    padding: 0 20px;
+}
+.profile_right h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.profile_right p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.profile_right-box {
+    width: 100%;
+    padding: 20px 20px;
+    border: 1px solid rgb(229, 229, 229);
+    background-color: white;
+    border-radius: 5px;
+    font-size: 17px;
+}
+.profile_right-box > div {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    margin-bottom: 15px;
+}
+.profile_right-box > div label {
+    margin-bottom: 5px;
+}
+.profile_right-box > div input {
+    margin-bottom: 15px;
+    border: none;
+}
+
+.profile_right-box > div:last-child {
+    border-bottom: 0px solid rgb(235, 235, 235);
+    margin-bottom: 0px;
+}
+.profile_right-box > div:last-child input {
+    margin-bottom: 0px;
+}
+
+.profile_right-btn {
+    background-color: rgb(18, 18, 18);
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    margin-top: 20px;
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 5px;
+}
+.profile_right-btn:hover {
+    background-color: rgb(61, 61, 61);
+}
+.profile_right-btn1 {
+	background-color: rgb(175 3 3);
+}
+
+/* 관리자 페이지 테이블 */
+.profile_right table {
+    width: 100%;
+    text-align: left;
+    padding: 20px 20px;
+    border: 1px solid rgb(229, 229, 229);
+    background-color: white;
+    border-radius: 5px;
+    font-size: 17px;
+    border-collapse: separate;
+    overflow: hidden; 
+}
+.profile_right table thead th {
+    border-bottom: 1px solid rgb(182, 182, 182);
+    padding-bottom: 5px;
+}
+.profile_right table tbody td {
+    padding-top: 15px;
+}
+.profile_right table tbody td:first-child a {
+	width: 50%;
+    display: inline-block;
+}
+.profile_right table tbody td:first-child a:hover {
+    color: rgb(187, 187, 187);
+}
+
+.profile_right .pagination {
+	margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile_right .pagination li {
+    margin-right: 8px;
+}
+.profile_right .pagination li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+.profile_right .pagination .active {
+    border-bottom: 1px solid rgb(0, 0, 0);
+}

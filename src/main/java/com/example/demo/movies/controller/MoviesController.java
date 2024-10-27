@@ -33,6 +33,9 @@ public class MoviesController {
 	public void read(@RequestParam(name = "movieId") Long movieId, Model model) {
 		
 		MoviesDTO dto = moviesService.read(movieId);
+List<MoviesDTO> list = moviesService.getList("");
+		
+		model.addAttribute("list", list);
 		
 		model.addAttribute("dto", dto);
 	}

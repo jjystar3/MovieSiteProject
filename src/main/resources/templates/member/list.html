@@ -1,50 +1,111 @@
 <!DOCTYPE html>
 
-<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
 
-	<th:block th:fragment="content">
 
-		<h1>관리자 페이지</h1>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ott</title>
 
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>이메일</th>
-					<th>등록일</th>
-				</tr>
-			</thead>
-			
-			<!-- 테이블 처리 -->
-			<tbody>
+<!-- favicon -->
+<link rel="shortcut icon" href="/images/favicon.ico">
 
-				<!--[[${list}]]-->
+<!-- fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap"
+	rel="stylesheet">
 
-				<tr th:each="dto : ${list}">
+<!-- CSS -->
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="/css/profile_mob.css">
 
-					<!--[[${dto}]]-->
+<!-- jQuery -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-					<th>
-						<a th:href="@{/member/read(id = ${dto.id}, page= ${list.number + 1})}">
-							[[${dto.id}]]
-						</a>
-					</th>
-					<td>[[${dto.email}]]</td>
-					<td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
-				</tr>
+<!-- js -->
+<script defer th:src="@{/js/scripts.js}"></script>
 
-			</tbody>
-		</table>
+<!-- font awesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-		<!-- 페이지 번호 목록 -->
-	    <ul class="pagination h-100 justify-content-center align-items-center">
-	         <li th:class=" 'page-item ' + ${(list.number + 1) == page?'active':''} " th:each="page: ${#numbers.sequence(1, list.totalPages)}">
-                <a class="page-link" th:href="@{/member/list(page = ${page})}">
-                    [[${page}]]
-                </a>
-            </li>
-        </ul>
-		
-	</th:block>
+</head>
+<body>
+	<div class="main_logo">
+		<div>
+			<a href="http://localhost:8080/"> <img src="/images/logo.png"
+				alt="로고">
+			</a>
+		</div>
+	</div>
+	<div class="wrap">
+		<div class="profile_box">
 
-</th:block>
+			<div class="profile_left">
+				<a href="http://localhost:8080/"><i
+					class="fa-solid fa-arrow-left"></i>넷플릭스로 돌아가기</a> <a
+					class="profile_action" href="/member/list" sec:authorize="hasRole('ROLE_ADMIN')">회원관리</a> <a
+					href="/member/profile"
+					sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">계정</a> <a
+					href="">고객센터</a>
+			</div>
+
+			<div class="profile_left-mob">
+				<a class="profile_action" href="/member/list" sec:authorize="hasRole('ROLE_ADMIN')">회원관리</a>
+				<a href="/member/profile"
+					sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">계정</a> <a
+					href="">고객센터</a>
+			</div>
+
+			<div class="profile_right">
+				<h1>회원관리</h1>
+				<p>회원목록</p>
+				<table>
+					<thead>
+						<tr>
+							<th>ID 번호</th>
+							<th>이메일</th>
+							<th>등록일</th>
+						</tr>
+					</thead>
+
+					<!-- 테이블 처리 -->
+					<tbody>
+						<tr th:each="dto : ${list}">
+							<td><a
+								th:href="@{/member/read(id = ${dto.id}, page= ${list.number + 1})}">
+									[[${dto.id}]] </a></td>
+							<td>[[${dto.email}]]</td>
+							<td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<!-- 페이지 번호 목록 -->
+				<ul class="pagination">
+					<li
+						th:class=" 'page-item ' + ${(list.number + 1) == page?'active':''} "
+						th:each="page: ${#numbers.sequence(1, list.totalPages)}"><a
+						class="page-link" th:href="@{/member/list(page = ${page})}">
+							[[${page}]] </a></li>
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+	<th:block
+		th:replace="~{/common/footer :: setContent(~{this::content})}"></th:block>
+</body>
+</html>
