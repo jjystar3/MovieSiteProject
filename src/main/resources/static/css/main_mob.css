@@ -1,5 +1,23 @@
 @charset "UTF-8";
 
+@media (max-width: 1500px) {
+	.section1_box-title h1 {
+	    color: white;
+	    font-size: 5vw;
+	    font-weight: bold;
+	    margin-bottom: 5px;
+	}
+	.section1_box-title a {
+	    font-size: 1.2vw;
+	    font-weight: bold;
+	    color: rgb(16, 16, 16);
+	    background-color: white;
+	    border-radius: 5px;
+	    padding: 5px 10px;
+	    transition: 0.3s;
+	}
+}
+
 @media (max-width: 1024px) {
     .section1_box-title h1 {
         margin-bottom: 5px;
