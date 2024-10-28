@@ -1,20 +1,16 @@
 package com.example.demo.openapi.job;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
-import org.springframework.batch.core.scope.context.StepContext;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -47,6 +43,9 @@ public class MovieBatchConfig {
 
     @Autowired
     private PlatformTransactionManager transactionManager;
+    
+    private List<String> allPagesData = new ArrayList<>();
+    private List<Movies> moviesList = new ArrayList<>();
 
     private final OkHttpClient client = new OkHttpClient();
     private final ObjectMapper mapper = new ObjectMapper();
@@ -72,6 +71,7 @@ public class MovieBatchConfig {
     public Step fetchMoviesStep() {
         return new StepBuilder("Step1. Fetch Movies from TMDB API", jobRepository)
                 .tasklet(fetchMoviesTasklet(), transactionManager)
+                .allowStartIfComplete(true)
                 .build();
     }
 
@@ -79,6 +79,7 @@ public class MovieBatchConfig {
     public Step parseMoviesStep() {
         return new StepBuilder("Step2. Parse Fetched Movies Data", jobRepository)
                 .tasklet(parseMoviesTasklet(), transactionManager)
+                .allowStartIfComplete(true)
                 .build();
     }
 
@@ -86,6 +87,7 @@ public class MovieBatchConfig {
     public Step saveMoviesStep() {
         return new StepBuilder("Step3. Save Movies to Database", jobRepository)
                 .tasklet(saveMoviesTasklet(), transactionManager)
+                .allowStartIfComplete(true)
                 .build();
     }
 
@@ -93,7 +95,6 @@ public class MovieBatchConfig {
     public Tasklet fetchMoviesTasklet() {
         return (contribution, chunkContext) -> {
             int page = 1;
-            List<String> allPagesData = new ArrayList<>();
 
             // Fetch movies from the API page by page
             do {
@@ -113,8 +114,8 @@ public class MovieBatchConfig {
 
             } while (true);
             
-            StepContext context = chunkContext.getStepContext();
-	        context.getStepExecution().getJobExecution().getExecutionContext().put("FetchedMovieData", allPagesData);
+//          StepContext context = chunkContext.getStepContext();
+//	        context.getStepExecution().getJobExecution().getExecutionContext().put("FetchedMovieData", allPagesData);
 	        
             return RepeatStatus.FINISHED;
         };
@@ -124,19 +125,17 @@ public class MovieBatchConfig {
     public Tasklet parseMoviesTasklet() {
         return (contribution, chunkContext) -> {
 
-	        StepContext context = chunkContext.getStepContext();
-			Object apiString = context.getStepExecution().getJobExecution().getExecutionContext().get("FetchedMovieData");
-        	
-            @SuppressWarnings("unchecked")
-            List<String> fetchedData = (List<String>) apiString;
+//	        StepContext context = chunkContext.getStepContext();
+//			Object apiString = context.getStepExecution().getJobExecution().getExecutionContext().get("FetchedMovieData");
+//        	
+//            @SuppressWarnings("unchecked")
+//            List<String> fetchedData = (List<String>) apiString;
+//
+//            if (fetchedData == null) {
+//                throw new IllegalStateException("FetchedMovieData is missing in the ExecutionContext.");
+//            }
 
-            if (fetchedData == null) {
-                throw new IllegalStateException("FetchedMovieData is missing in the ExecutionContext.");
-            }
-
-            List<Movies> moviesList = new ArrayList<>();
-
-            for (String pageData : fetchedData) {
+            for (String pageData : allPagesData) {
                 // Parse each page's data
                 Root root = mapper.readValue(pageData, Root.class);
 
@@ -193,7 +192,7 @@ public class MovieBatchConfig {
                 }
             }
 
-	        context.getStepExecution().getJobExecution().getExecutionContext().put("ParsedMoviesList", moviesList);
+//	        context.getStepExecution().getJobExecution().getExecutionContext().put("ParsedMoviesList", moviesList);
 	        
             return RepeatStatus.FINISHED;
         };
@@ -203,15 +202,15 @@ public class MovieBatchConfig {
     public Tasklet saveMoviesTasklet() {
         return (contribution, chunkContext) -> {
 
-	        StepContext context = chunkContext.getStepContext();
-			Object jsonString = context.getStepExecution().getJobExecution().getExecutionContext().get("ParsedMoviesList");
-        	
-            @SuppressWarnings("unchecked")
-            List<Movies> moviesList = (List<Movies>) jsonString;
+//	        StepContext context = chunkContext.getStepContext();
+//			Object jsonString = context.getStepExecution().getJobExecution().getExecutionContext().get("ParsedMoviesList");
+//        	
+//            @SuppressWarnings("unchecked")
+//            List<Movies> moviesList = (List<Movies>) jsonString;
 
-            if (moviesList == null || moviesList.isEmpty()) {
-                throw new IllegalStateException("ParsedMoviesList is empty or missing in the ExecutionContext.");
-            }
+//            if (moviesList == null || moviesList.isEmpty()) {
+//                throw new IllegalStateException("ParsedMoviesList is empty or missing in the ExecutionContext.");
+//            }
 
             // Save the parsed movies to the database
             moviesRepository.saveAll(moviesList);
