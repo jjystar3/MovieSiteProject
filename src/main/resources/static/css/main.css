@@ -17,24 +17,25 @@
 }
 
 .section1_box {
-	width: 110%;
-	height: 56.25vw;
-	max-height: 100vh;
-	overflow: hidden;
+    width: 100%; 
+    height: 56.25vw;
+    max-height: 100vh;
+    overflow: hidden;
 }
 
 .section1_box-vod {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 100%;
-	height: 100%;
-	transform: translate(-50%, -50%);
-	object-fit: cover;
-	object-position: center;
-	background: linear-gradient(to bottom, black 0%, black 50%, rgba(0, 0, 0, 0.5)
-		75%, #060606 100%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%; 
+    height: 100%; 
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    object-position: center;
+    background: linear-gradient(to bottom, black 0%, black 50%, rgba(0, 0, 0, 0.5) 75%, #060606 100%);
+    border: none; 
 }
+
 
 .section1_box-title {
 	position: absolute;
@@ -43,9 +44,9 @@
 
 .section1_box-title h1 {
 	color: white;
-	font-size: 5vw;
+	font-size: 2.6vw;
 	font-weight: bold;
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 }
 
 .section1_box-title a {

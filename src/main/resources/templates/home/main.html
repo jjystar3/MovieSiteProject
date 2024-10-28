@@ -48,8 +48,10 @@
 		<section class="section1">
 			<div class="section1_wrap">
 				<div class="section1_box">
-					<iframe class="section1_box-vod" th:src="@{https://www.youtube.com/embed/{video}?autoplay=1&mute=1&loop=1&controls=0(video=${list[24].videoPath})}" allow="autoplay" style="background: #FFFFFF; border: 0px; margin: 0px; padding: 0px;" >
-		  			</iframe>
+					<iframe class="section1_box-vod"
+						th:src="@{https://www.youtube.com/embed/{video}?autoplay=1&mute=1&loop=1&controls=0&playlist={video}(video=${list[24].videoPath})}"
+						allow="autoplay; loop"> </iframe>
+
 					<div class="section1_box-title section1_box-titlePa">
 						<h1>[[${list[24].title}]]</h1>
 						<a th:href="@{/movies/read(movieId=${list[24].movieId})}"> <i
@@ -315,7 +317,7 @@
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="section section3">
 			<div class="section3_wrap section_padding">
 				<div class="section_title section3_title">
