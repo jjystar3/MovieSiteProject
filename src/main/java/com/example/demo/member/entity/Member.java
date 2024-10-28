@@ -38,7 +38,7 @@ public class Member extends BaseEntity {
     private String username;  // Nullable username ...zzz
 	
     @NotBlank
-    @Size(min = 8, max = 100) // Minimum 8 characters for security reasons
+//    @Size(min = 8, max = 100) // Minimum 8 characters for security reasons
     @Column(length = 100, nullable = false)
     private String password;
 
