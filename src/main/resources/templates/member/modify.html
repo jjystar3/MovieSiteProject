@@ -135,13 +135,17 @@
 				<h1>계정</h1>
 				<p>프로필 정보</p>
 				<form class="profile_right-box">
+					<div class="form-group">
+			            <label >번호</label>
+			            <input type="text" name="id" th:value="${dto.id}" readonly>
+			        </div>
 					<div>
 						<label>이메일</label> <input type="text" name="email"
 							th:value="${dto.email}">
 					</div>
 					<div>
 						<label>패스워드</label> <input type="password" name="password"
-							th:value="${dto.password}">
+							th:value="${dto.password}" readonly>
 					</div>
 				</form>
 				<button type="button"

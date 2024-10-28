@@ -125,7 +125,7 @@
 			<div class="vod_box">
 				<div class="vod_box-iframe">
 					<iframe
-						th:src="@{https://www.youtube.com/embed/{video}?autoplay=1(video=${dto.videoPath})}">
+						th:src="@{https://www.youtube.com/embed/{video}?autoplay=1&mute=1(video=${dto.videoPath})}" allow="autoplay" style="background: #FFFFFF; border: 0px; margin: 0px; padding: 0px;">
 					</iframe>
 				</div>
 			</div>

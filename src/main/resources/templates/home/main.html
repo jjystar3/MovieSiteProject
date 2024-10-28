@@ -48,11 +48,10 @@
 		<section class="section1">
 			<div class="section1_wrap">
 				<div class="section1_box">
-					<video class="section1_box-vod" loop muted autoplay>
-						<source src="/vod/Joker.mp4" type="video/mp4">
-					</video>
+					<iframe class="section1_box-vod" th:src="@{https://www.youtube.com/embed/{video}?autoplay=1&mute=1&loop=1&controls=0(video=${list[24].videoPath})}" allow="autoplay" style="background: #FFFFFF; border: 0px; margin: 0px; padding: 0px;" >
+		  			</iframe>
 					<div class="section1_box-title section1_box-titlePa">
-						<h1>Joker: Folie a Deux</h1>
+						<h1>[[${list[24].title}]]</h1>
 						<a th:href="@{/movies/read(movieId=${list[24].movieId})}"> <i
 							class="fa-solid fa-circle-info"></i>상세정보
 						</a>
